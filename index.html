@@ -1,99 +1,215 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Preetham ND - Full Stack Java Developer</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Full Stack Java Developer specializing in Spring Boot, ReactJS, and modern web technologies"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/scandinavian.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <a href="index.html" class="navbar-brand">Preetham ND</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar-menu" id="navbarMenu">
+          <li><a href="index.html" class="active">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <ul class="navbar-social">
+            <li>
+              <a
+                href="https://www.linkedin.com/in/preetham-nd"
+                target="_blank"
+                aria-label="LinkedIn"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/Preethamnd1998"
+                target="_blank"
+                aria-label="GitHub"
+                ><i class="fab fa-github"></i
+              ></a>
+            </li>
+          </ul>
+        </ul>
+      </div>
+    </nav>
 
-<html>
-	<head>
-		<title>Preetham || Home</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content" data-aos="fade-up">
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-title">Preetham ND</h1>
+        <p class="hero-subtitle">Full Stack Java Developer</p>
+        <p class="hero-description">
+          Crafting efficient, scalable solutions with modern technologies.
+          Specialized in Java, Spring Boot, and React development.
+        </p>
+        <div class="hero-cta">
+          <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+          <a href="skills.html" class="btn btn-outline">View Skills</a>
+        </div>
+      </div>
+    </section>
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <p class="section-tag">About Me</p>
+          <h2 class="section-title">Passionate Developer & Problem Solver</h2>
+        </div>
+        <div class="about-content" data-aos="fade-up" data-aos-delay="100">
+          <p class="about-text">
+            Hi, I'm <strong>Preetham ND</strong>, a passionate Full Stack
+            Developer with expertise in both front-end and back-end
+            technologies. I specialize in Java ecosystem, Spring Framework,
+            ReactJS, Angular, and microservices architecture. With a keen eye
+            for detail and commitment to excellence, I thrive in dynamic,
+            fast-paced environments.
+          </p>
+          <p class="about-text">
+            My journey in software development has equipped me with a
+            comprehensive skill set spanning enterprise-level Java applications,
+            modern JavaScript frameworks, cloud technologies, and database
+            management. I believe in writing clean, maintainable code that not
+            only solves problems but also scales efficiently.
+          </p>
+          <p class="about-text">
+            Beyond technical skills, I bring strong leadership qualities and
+            collaborative spirit to every project. I excel at translating
+            complex business requirements into actionable technical solutions
+            while fostering an environment of continuous learning and
+            innovation.
+          </p>
+          <p class="about-text">
+            Currently working as a Full Stack Software Engineer, I'm involved in
+            developing enterprise healthcare solutions including workflow
+            management systems, billing automation, and inventory management
+            within the LifetrezEHR v2 product suite. My approach combines
+            technical expertise with a deep understanding of user needs to
+            deliver solutions that make a real impact.
+          </p>
+        </div>
+      </div>
+    </section>
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>Hi!.. This is <br> Preetham ND</h1>
-						<p>Full Stack Java Developer</p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+    <!-- Detailed Info Section -->
+    <section class="section" style="background-color: var(--bg-warm)">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <p class="section-tag">What I Do</p>
+          <h2 class="section-title">Areas of Expertise</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="skill-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <h3>Backend Development</h3>
+            <p
+              style="
+                color: var(--text-secondary);
+                font-size: 0.9375rem;
+                line-height: 1.8;
+              "
+            >
+              Expert in building robust server-side applications using Java,
+              Spring Boot, and microservices architecture. Proficient in RESTful
+              API design, security implementation, and database integration.
+            </p>
+          </div>
+          <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="skill-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3>Frontend Development</h3>
+            <p
+              style="
+                color: var(--text-secondary);
+                font-size: 0.9375rem;
+                line-height: 1.8;
+              "
+            >
+              Creating responsive, user-friendly interfaces with React, Angular,
+              and modern JavaScript. Focus on performance optimization and
+              seamless user experiences across all devices.
+            </p>
+          </div>
+          <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="skill-icon">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <h3>System Architecture</h3>
+            <p
+              style="
+                color: var(--text-secondary);
+                font-size: 0.9375rem;
+                line-height: 1.8;
+              "
+            >
+              Designing scalable microservices architectures, implementing
+              messaging systems with Kafka, and orchestrating distributed
+              systems with modern DevOps practices.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Preetham N D</a>
-					</header>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <ul class="footer-social">
+          <li>
+            <a
+              href="https://www.linkedin.com/in/preetham-nd"
+              target="_blank"
+              aria-label="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/Preethamnd1998"
+              target="_blank"
+              aria-label="GitHub"
+              ><i class="fab fa-github"></i
+            ></a>
+          </li>
+        </ul>
+        <p>&copy; 2024 Preetham ND. All rights reserved.</p>
+      </div>
+    </footer>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">About</a></li>
-							<li><a href="skill2.html">Skills</a></li>
-							<li><a href="certification.html">Certifications</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/preetham-nd" target="_blank" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-							<li><a href="https://github.com/Preethamnd1998" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<span class="date">November 25, 2024</span>
-									<h2><a href="#">About Me..<br /></a></h2>
-									<p>Hi, I'm Preetham ND, a passionate Full Stack Developer with expertise in both front-end and back-end technologies, including Java, Spring Framework, ReactJS, and more. I thrive in dynamic, fast-paced environments and am dedicated to building efficient, scalable, and innovative solutions.
-										I specialize in developing robust and efficient software solutions. With a strong foundation in Java, Spring Boot, and ReactJS, I bring creativity and problem-solving skills to every project I undertake.
-										In addition to my technical skills, I possess strong leadership qualities. I’m skilled at turning complex requirements into actionable plans and fostering an environment of continuous learning and improvement
-										With a solid foundation in software development, I am always eager to take on new challenges, adapt to new technologies, and ensure that every project I work on meets the highest standards of quality and performance. I am committed to both personal and professional growth, and I believe that the key to success in any project lies in teamwork, communication, and dedication.
-									  </p>
-								</header>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Full Story</a></li>
-								</ul>
-							</article>
-
-
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
-
-					</div>
-
-
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; 2024 Preetham ND. All rights reserved. </li></ul>
-					</div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/modern.js"></script>
+  </body>
 </html>
