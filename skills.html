@@ -1,251 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Preetham ND - Technical Skills</title>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
-    <meta
-      name="description"
-      content="Technical skills and expertise of Preetham ND - Full Stack Java Developer"
-    />
-    <meta name="theme-color" content="#f5f5f7" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="assets/css/scandinavian.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skills · Preetham ND</title>
+    <meta name="description" content="Technical skills of Preetham ND: Java, Spring Boot, Angular, React, microservices, Kafka, PostgreSQL, MongoDB and testing with JUnit and Mockito." />
+    <meta name="author" content="Preetham ND" />
+    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href="https://preethamnd1998.github.io/skills.html" />
+    <meta property="og:url" content="https://preethamnd1998.github.io/skills.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Preetham ND" />
+    <meta property="og:title" content="Skills · Preetham ND" />
+    <meta property="og:description" content="Technical skills of Preetham ND: Java, Spring Boot, Angular, React, microservices, Kafka, PostgreSQL, MongoDB and testing with JUnit and Mockito." />
+    <meta property="og:image" content="https://preethamnd1998.github.io/assets/img/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <script>document.documentElement.classList.add("js");</script>
+    <script src="assets/js/site.js" defer></script>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <nav class="navbar" id="navbar" aria-label="Main navigation">
       <div class="container">
         <a href="index.html" class="navbar-brand">Preetham ND<span aria-hidden="true">.</span></a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-controls="navbarMenu" aria-expanded="false">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-controls="navbarMenu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
         <ul class="navbar-menu" id="navbarMenu">
           <li><a href="index.html">About</a></li>
-          <li><a href="skills.html" class="active" aria-current="page">Skills</a></li>
+          <li><a href="skills.html" aria-current="page">Skills</a></li>
           <li><a href="experience.html">Experience</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li class="navbar-social">
-            <a href="https://www.linkedin.com/in/preetham-nd" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-            <a href="https://github.com/Preethamnd1998" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/preetham-nd" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="icon-sm" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
+            <a href="https://github.com/Preethamnd1998" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="icon-sm" aria-hidden="true"><use href="assets/icons.svg#github"></use></svg></a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" style="min-height: 50vh; padding-top: 120px">
-      <div class="hero-content" data-aos="fade-up">
-        <p class="hero-greeting">Technical Expertise</p>
-        <h1 class="hero-title">My Skills</h1>
-        <p class="hero-description">
-          A comprehensive overview of technologies and tools I work with
-        </p>
-      </div>
-    </section>
+    <main id="main">
+      <section class="hero hero-sm">
+        <div class="container hero-content">
+          <span class="eyebrow">Skills</span>
+          <h1>The tools I use.</h1>
+          <p class="hero-lead">A Java and Spring core, a modern frontend, and the infrastructure in between.</p>
+        </div>
+      </section>
 
-    <!-- Skills Section -->
-    <section class="section">
-      <div class="container">
-        <div class="skills-grid">
-          <!-- Programming Languages -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="0">
-            <div class="skill-icon">
-              <i class="fas fa-code" aria-hidden="true"></i>
-            </div>
-            <h3>Programming Languages</h3>
-            <ul class="skill-list">
-              <li>Core Java (Advanced)</li>
-              <li>Python</li>
-              <li>JavaScript/TypeScript</li>
-            </ul>
-          </div>
-
-          <!-- Web Frameworks -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="skill-icon">
-              <i class="fas fa-leaf" aria-hidden="true"></i>
-            </div>
-            <h3>Backend Frameworks</h3>
-            <ul class="skill-list">
-              <li>Spring Framework</li>
-              <li>Spring Boot</li>
-              <li>Spring MVC</li>
-              <li>Spring IoC</li>
-              <li>Spring Data JPA</li>
-              <li>Spring Security</li>
-            </ul>
-          </div>
-
-          <!-- Frontend Technologies -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="skill-icon">
-              <i class="fas fa-laptop-code" aria-hidden="true"></i>
-            </div>
-            <h3>Frontend Technologies</h3>
-            <ul class="skill-list">
-              <li>ReactJS</li>
-              <li>Angular</li>
-              <li>HTML5 & CSS3</li>
-              <li>Bootstrap</li>
-              <li>JavaScript ES6+</li>
-            </ul>
-          </div>
-
-          <!-- Microservices & Architecture -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="0">
-            <div class="skill-icon">
-              <i class="fas fa-project-diagram" aria-hidden="true"></i>
-            </div>
-            <h3>Microservices & Architecture</h3>
-            <ul class="skill-list">
-              <li>Microservices Design</li>
-              <li>RESTful APIs</li>
-              <li>Apache Kafka</li>
-              <li>Apache Zookeeper</li>
-              <li>Event-Driven Architecture</li>
-            </ul>
-          </div>
-
-          <!-- Databases -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="skill-icon">
-              <i class="fas fa-database" aria-hidden="true"></i>
-            </div>
-            <h3>Databases</h3>
-            <ul class="skill-list">
-              <li>MySQL</li>
-              <li>SQL Server</li>
-              <li>MongoDB</li>
-              <li>JDBC</li>
-              <li>Hibernate ORM</li>
-              <li>Spring Data JPA</li>
-            </ul>
-          </div>
-
-          <!-- J2EE Technologies -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="skill-icon">
-              <i class="fas fa-server" aria-hidden="true"></i>
-            </div>
-            <h3>J2EE Technologies</h3>
-            <ul class="skill-list">
-              <li>Servlets</li>
-              <li>JSP (JavaServer Pages)</li>
-              <li>RESTful Web Services</li>
-            </ul>
-          </div>
-
-          <!-- Testing Frameworks -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="0">
-            <div class="skill-icon">
-              <i class="fas fa-flask" aria-hidden="true"></i>
-            </div>
-            <h3>Testing Frameworks</h3>
-            <ul class="skill-list">
-              <li>JUnit</li>
-              <li>Mockito</li>
-              <li>AssertJ</li>
-              <li>Integration Testing</li>
-            </ul>
-          </div>
-
-          <!-- Design Patterns -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="skill-icon">
-              <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
-            </div>
-            <h3>Design Patterns</h3>
-            <ul class="skill-list">
-              <li>Singleton Pattern</li>
-              <li>Factory Pattern</li>
-              <li>Producer-Consumer</li>
-              <li>Decorator Pattern</li>
-              <li>MVC Architecture</li>
-            </ul>
-          </div>
-
-          <!-- Development Tools & IDEs -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="skill-icon">
-              <i class="fas fa-tools" aria-hidden="true"></i>
-            </div>
-            <h3>Development Tools & IDEs</h3>
-            <ul class="skill-list">
-              <li>Visual Studio Code</li>
-              <li>Eclipse IDE</li>
-              <li>Spring Tool Suite (STS)</li>
-              <li>IntelliJ IDEA</li>
-            </ul>
-          </div>
-
-          <!-- Build Tools & Version Control -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="0">
-            <div class="skill-icon">
-              <i class="fas fa-cogs" aria-hidden="true"></i>
-            </div>
-            <h3>Build Tools & DevOps</h3>
-            <ul class="skill-list">
-              <li>Maven</li>
-              <li>Gradle</li>
-              <li>Git & GitHub</li>
-              <li>Jenkins/CI-CD</li>
-            </ul>
-          </div>
-
-          <!-- Application Servers -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="skill-icon">
-              <i class="fas fa-hdd" aria-hidden="true"></i>
-            </div>
-            <h3>Application Servers</h3>
-            <ul class="skill-list">
-              <li>Apache Tomcat</li>
-              <li>WildFly</li>
-            </ul>
-          </div>
-
-          <!-- API Testing & Tools -->
-          <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="skill-icon">
-              <i class="fas fa-vial" aria-hidden="true"></i>
-            </div>
-            <h3>API Testing & Tools</h3>
-            <ul class="skill-list">
-              <li>Postman</li>
-              <li>Swagger/OpenAPI</li>
-              <li>REST Client</li>
-            </ul>
+      <section class="section">
+        <div class="container">
+          <div class="grid">
+            <article class="card reveal">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#code"></use></svg></span>
+              <h3>Languages</h3>
+              <ul class="tags"><li>Java</li><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>SQL</li></ul>
+            </article>
+            <article class="card reveal">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#server"></use></svg></span>
+              <h3>Backend</h3>
+              <ul class="tags"><li>Spring Boot</li><li>Spring MVC</li><li>Spring Security</li><li>Spring Data JPA</li><li>Hibernate</li><li>REST APIs</li></ul>
+            </article>
+            <article class="card reveal">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#monitor"></use></svg></span>
+              <h3>Frontend</h3>
+              <ul class="tags"><li>Angular</li><li>React</li><li>HTML &amp; CSS</li><li>Bootstrap</li></ul>
+            </article>
+            <article class="card reveal">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#layers"></use></svg></span>
+              <h3>Architecture &amp; messaging</h3>
+              <ul class="tags"><li>Microservices</li><li>Event-driven design</li><li>Apache Kafka</li><li>OpenAPI / Swagger</li></ul>
+            </article>
+            <article class="card reveal">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#database"></use></svg></span>
+              <h3>Data</h3>
+              <ul class="tags"><li>PostgreSQL</li><li>MySQL</li><li>SQL Server</li><li>MongoDB</li></ul>
+            </article>
+            <article class="card reveal">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#flask"></use></svg></span>
+              <h3>Testing</h3>
+              <ul class="tags"><li>JUnit</li><li>Mockito</li><li>AssertJ</li><li>Integration tests</li><li>Postman</li></ul>
+            </article>
+            <article class="card reveal">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#terminal"></use></svg></span>
+              <h3>Tooling &amp; delivery</h3>
+              <ul class="tags"><li>Git &amp; GitHub</li><li>Maven</li><li>Gradle</li><li>Jenkins</li><li>Tomcat</li><li>IntelliJ IDEA</li></ul>
+            </article>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Footer -->
+      <section class="section section-alt">
+        <div class="container">
+          <div class="section-header center reveal">
+            <span class="eyebrow">Get in touch</span>
+            <h2>Need these skills on your team?</h2>
+            <p>Tell me about the problem you’re working on.</p>
+            <div class="hero-cta">
+              <a href="mailto:preethamnd456@gmail.com" class="btn btn-primary"><svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg> Email me</a>
+              <a href="https://www.linkedin.com/in/preetham-nd" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Connect on LinkedIn <svg class="icon icon-sm" aria-hidden="true"><use href="assets/icons.svg#arrow-up-right"></use></svg></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <footer class="footer">
       <div class="container">
         <ul class="footer-social">
-          <li><a href="https://www.linkedin.com/in/preetham-nd" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-          <li><a href="https://github.com/Preethamnd1998" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/preetham-nd" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a></li>
+          <li><a href="https://github.com/Preethamnd1998" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#github"></use></svg></a></li>
+          <li><a href="mailto:preethamnd456@gmail.com" aria-label="Email"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg></a></li>
         </ul>
-        <p>© 2026 Preetham ND. Built with care.</p>
+        <p>© 2026 Preetham ND</p>
       </div>
     </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="assets/js/modern.js"></script>
   </body>
 </html>
