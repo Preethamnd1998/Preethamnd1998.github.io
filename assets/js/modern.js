@@ -4,12 +4,15 @@
     'use strict';
 
     // Initialize AOS (Animate On Scroll)
-    AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-        offset: 100
-    });
+    if (window.AOS) {
+        AOS.init({
+            duration: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 650,
+            easing: 'ease-out',
+            once: true,
+            offset: 80,
+            disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        });
+    }
 
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
@@ -33,8 +36,9 @@
 
     if (menuToggle) {
         menuToggle.addEventListener('click', () => {
-            navbarMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+            const isOpen = navbarMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active', isOpen);
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
         });
 
         // Close menu when clicking outside
@@ -42,6 +46,7 @@
             if (!navbarMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                 navbarMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -51,6 +56,7 @@
             link.addEventListener('click', () => {
                 navbarMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             });
         });
     }
