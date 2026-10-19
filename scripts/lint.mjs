@@ -4,7 +4,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ROOT, generatedFiles, loadContent } from './lib/content.mjs';
-import { PUBLISHED } from './lib/build.mjs';
+import { publishedEntries } from './lib/build.mjs';
 
 const root = fileURLToPath(ROOT);
 /** @type {string[]} */
@@ -19,8 +19,19 @@ for (const [file, expected] of Object.entries(generatedFiles())) {
   }
 }
 
+// 1b. The sitemap lists each URL once.
+{
+  const sitemap = generatedFiles()['sitemap.xml'];
+  const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const seen = new Set();
+  for (const loc of locs) {
+    if (seen.has(loc)) report('sitemap.xml', `duplicate <loc> entry: ${loc}`);
+    seen.add(loc);
+  }
+}
+
 // 2. Structured content has the fields the templates rely on.
-const { data, repos } = loadContent();
+const { data, repos, articles } = loadContent();
 for (const c of data.work.caseStudies) {
   for (const key of ['id', 'title', 'summary', 'challenge', 'contribution', 'highlights', 'tech']) {
     if (!c[key] || (Array.isArray(c[key]) && !c[key].length)) report('data/site.json', `case study "${c.id ?? '?'}" is missing ${key}`);
@@ -28,6 +39,23 @@ for (const c of data.work.caseStudies) {
 }
 const ids = data.work.caseStudies.map((/** @type {any} */ c) => c.id);
 if (new Set(ids).size !== ids.length) report('data/site.json', 'case study ids must be unique');
+const slugs = new Set();
+for (const series of articles.series) {
+  const numbers = new Set();
+  for (const a of series.articles) {
+    for (const key of ['slug', 'number', 'title', 'summary', 'status', 'sections']) {
+      if (!a[key] || (Array.isArray(a[key]) && !a[key].length)) report('data/articles.json', `article "${a.slug ?? '?'}" is missing ${key}`);
+    }
+    if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(a.slug ?? '')) report('data/articles.json', `article slug "${a.slug}" must be lowercase kebab-case`);
+    if (slugs.has(a.slug)) report('data/articles.json', `duplicate article slug "${a.slug}"`);
+    slugs.add(a.slug);
+    if (numbers.has(a.number)) report('data/articles.json', `duplicate article number ${a.number} in series "${series.id}"`);
+    numbers.add(a.number);
+    if (!['draft', 'published'].includes(a.status)) report('data/articles.json', `article "${a.slug}" has invalid status "${a.status}"`);
+    if (a.status === 'published' && !/^\d{4}-\d{2}-\d{2}$/.test(a.publishedOn ?? '')) report('data/articles.json', `published article "${a.slug}" needs publishedOn (YYYY-MM-DD)`);
+    if (a.status === 'draft' && a.publishedOn) report('data/articles.json', `draft article "${a.slug}" must not have publishedOn`);
+  }
+}
 for (const r of repos.repos) {
   if (!/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/.test(r.url)) report('data/repos.json', `"${r.name}" has an invalid GitHub URL`);
 }
@@ -67,7 +95,7 @@ for (const page of pages) {
 // 4. No hard-coded release versions or secrets in published source.
 /** @param {string} dir @returns {string[]} */
 const walk = (dir) => readdirSync(dir).flatMap((f) => (statSync(join(dir, f)).isDirectory() ? walk(join(dir, f)) : [join(dir, f)]));
-const textFiles = PUBLISHED.flatMap((p) => (statSync(join(root, p)).isDirectory() ? walk(join(root, p)) : [join(root, p)])).filter((f) => /\.(html|css|js|svg|txt|xml)$/.test(f));
+const textFiles = publishedEntries(root).flatMap((p) => (statSync(join(root, p)).isDirectory() ? walk(join(root, p)) : [join(root, p)])).filter((f) => /\.(html|css|js|svg|txt|xml)$/.test(f));
 for (const file of textFiles) {
   const src = readFileSync(file, 'utf8');
   const rel = relative(root, file);
