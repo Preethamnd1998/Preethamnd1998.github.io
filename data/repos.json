@@ -1,0 +1,42 @@
+{
+  "fetchedAt": "2026-10-17",
+  "source": "GitHub REST API (public repositories of Preethamnd1998)",
+  "repos": [
+    {
+      "name": "Enterprise-AI-Platform",
+      "url": "https://github.com/Preethamnd1998/Enterprise-AI-Platform",
+      "description": "Enterprise AI Platform",
+      "language": null,
+      "stars": 0,
+      "pushedAt": "2026-10-17T05:37:10Z",
+      "note": "Public home for the AI developer platform. Currently holds a README only."
+    },
+    {
+      "name": "Knowledge-Graph-Generator",
+      "url": "https://github.com/Preethamnd1998/Knowledge-Graph-Generator",
+      "description": "Knowledge Graph Generator",
+      "language": null,
+      "stars": 0,
+      "pushedAt": "2026-10-17T05:37:39Z",
+      "note": "Code knowledge-graph tooling. Currently holds a README only."
+    },
+    {
+      "name": "Projects",
+      "url": "https://github.com/Preethamnd1998/Projects",
+      "description": "Projeccts",
+      "language": null,
+      "stars": 0,
+      "pushedAt": "2024-12-27T09:44:34Z",
+      "note": "Employee management app in React, on the master branch."
+    },
+    {
+      "name": "Preethamnd1998.github.io",
+      "url": "https://github.com/Preethamnd1998/Preethamnd1998.github.io",
+      "description": "My Website",
+      "language": "HTML",
+      "stars": 0,
+      "pushedAt": "2026-10-17T10:47:04Z",
+      "note": "This website."
+    }
+  ]
+}

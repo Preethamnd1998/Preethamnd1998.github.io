@@ -3,34 +3,42 @@
 
   // Navbar border once the page scrolls
   var navbar = document.getElementById('navbar');
-  function onScroll() {
-    navbar.classList.toggle('scrolled', window.scrollY > 8);
+  if (navbar) {
+    var bar = navbar;
+    var onScroll = function () {
+      bar.classList.toggle('scrolled', window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
 
   // Mobile menu
   var toggle = document.getElementById('menuToggle');
   var menu = document.getElementById('navbarMenu');
-  function setMenu(open) {
-    menu.classList.toggle('open', open);
-    toggle.setAttribute('aria-expanded', String(open));
+  if (toggle && menu) {
+    var btn = toggle;
+    var list = menu;
+    var setMenu = function (/** @type {boolean} */ open) {
+      list.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+    btn.addEventListener('click', function () {
+      setMenu(btn.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('click', function (e) {
+      var target = /** @type {Node | null} */ (e.target);
+      if (!list.contains(target) && !btn.contains(target)) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        btn.focus();
+      }
+    });
+    list.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setMenu(false); });
+    });
   }
-  toggle.addEventListener('click', function () {
-    setMenu(toggle.getAttribute('aria-expanded') !== 'true');
-  });
-  document.addEventListener('click', function (e) {
-    if (!menu.contains(e.target) && !toggle.contains(e.target)) setMenu(false);
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-      setMenu(false);
-      toggle.focus();
-    }
-  });
-  menu.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () { setMenu(false); });
-  });
 
   // Reveal content as it scrolls into view
   var items = document.querySelectorAll('.reveal');
