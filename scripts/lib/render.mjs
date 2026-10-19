@@ -17,20 +17,20 @@ export const VERSION_PLACEHOLDER = 'Development build';
  * @param {string} [cls]
  * @param {string} [base]
  */
-function icon(name, cls = 'icon', base = '') {
+export function icon(name, cls = 'icon', base = '') {
   return `<svg class="${cls}" aria-hidden="true"><use href="${base}assets/icons.svg#${name}"></use></svg>`;
 }
 
 /** @param {string[]} items */
 const tags = (items) => `<ul class="tags">${items.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
 
-const ext = 'target="_blank" rel="noopener noreferrer"';
+export const ext = 'target="_blank" rel="noopener noreferrer"';
 
 /**
  * @param {any} data
- * @param {{ file: string, title: string, description: string, body: string, base?: string, indexable?: boolean, jsonLd?: object }} page
+ * @param {{ file: string, title: string, description: string, body: string, base?: string, indexable?: boolean, jsonLd?: object, current?: string, ogType?: string }} page
  */
-function layout(data, page) {
+export function layout(data, page) {
   const { site, nav } = data;
   const base = page.base ?? '';
   const url = site.url + (page.file === 'index.html' ? '' : page.file);
@@ -38,7 +38,7 @@ function layout(data, page) {
   const navItems = nav
     .map(
       (/** @type {{href: string, label: string}} */ n) =>
-        `          <li><a href="${base}${n.href}"${n.href === page.file ? ' aria-current="page"' : ''}>${esc(n.label)}</a></li>`,
+        `          <li><a href="${base}${n.href}"${n.href === (page.current ?? page.file) ? ' aria-current="page"' : ''}>${esc(n.label)}</a></li>`,
     )
     .join('\n');
   const seo = indexable
@@ -56,7 +56,7 @@ function layout(data, page) {
     <meta name="author" content="${esc(site.name)}" />
     <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />${seo}
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="${page.ogType ?? 'website'}" />
     <meta property="og:site_name" content="${esc(site.name)}" />
     <meta property="og:title" content="${esc(page.title)}" />
     <meta property="og:description" content="${esc(page.description)}" />
@@ -108,7 +108,7 @@ ${page.body}
 }
 
 /** @param {string} eyebrow @param {string} h1 @param {string} lead */
-function heroSmall(eyebrow, h1, lead) {
+export function heroSmall(eyebrow, h1, lead) {
   return `      <section class="hero hero-sm">
         <div class="container hero-content">
           <span class="eyebrow">${esc(eyebrow)}</span>
@@ -138,7 +138,7 @@ function cta(site, title, text) {
 /**
  * @param {string} eyebrow @param {string} title @param {string} [text] @param {string} [cls]
  */
-function sectionHeader(eyebrow, title, text, cls = '') {
+export function sectionHeader(eyebrow, title, text, cls = '') {
   return `          <div class="section-header ${cls} reveal">
             <span class="eyebrow">${esc(eyebrow)}</span>
             <h2>${esc(title)}</h2>${text ? `\n            <p>${esc(text)}</p>` : ''}
@@ -529,10 +529,14 @@ export function renderPages(data, repos) {
   };
 }
 
-/** @param {any} data @param {string} lastmod */
-export function renderSitemap(data, lastmod) {
-  const urls = data.nav
-    .map((/** @type {any} */ n) => `  <url><loc>${data.site.url}${n.href === 'index.html' ? '' : n.href}</loc><lastmod>${lastmod}</lastmod></url>`)
+/**
+ * @param {any} data @param {string} lastmod
+ * @param {string[]} [extraPages] Additional indexable pages (e.g. published articles).
+ */
+export function renderSitemap(data, lastmod, extraPages = []) {
+  const files = [...new Set([...data.nav.map((/** @type {any} */ n) => n.href), ...extraPages])];
+  const urls = files
+    .map((file) => `  <url><loc>${data.site.url}${file === 'index.html' ? '' : file}</loc><lastmod>${lastmod}</lastmod></url>`)
     .join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 }

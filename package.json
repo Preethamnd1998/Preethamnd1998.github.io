@@ -12,6 +12,8 @@
     "typecheck": "tsc -b",
     "test": "node --test test/*.test.mjs",
     "build": "node scripts/build.mjs",
+    "check:articles": "node scripts/check-articles.mjs",
+    "sync:articles": "node scripts/sync-articles.mjs",
     "repos:refresh": "node scripts/refresh-repos.mjs",
     "release:plan": "node scripts/release-plan.mjs",
     "release:tag": "node scripts/release-tag.mjs"

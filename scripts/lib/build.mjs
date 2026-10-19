@@ -4,7 +4,15 @@ import { join } from 'node:path';
 import { esc, VERSION_PLACEHOLDER } from './render.mjs';
 
 /** Top-level files and folders that make up the published site. */
-export const PUBLISHED = ['index.html', 'work.html', 'skills.html', 'toolkit.html', 'experience.html', 'contact.html', '404.html', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'assets'];
+export const PUBLISHED = ['index.html', 'work.html', 'skills.html', 'toolkit.html', 'articles.html', 'experience.html', 'contact.html', '404.html', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'assets'];
+
+/**
+ * Published top-level entries plus the generated article pages (article-*.html), which come from data/articles.json.
+ * @param {string} root
+ */
+export function publishedEntries(root) {
+  return [...PUBLISHED, ...readdirSync(root).filter((f) => /^article-[\w-]+\.html$/.test(f)).sort()];
+}
 
 const SLOT = /(<span class="app-version" data-app-version>)([^<]*)(<\/span>)/g;
 
@@ -32,7 +40,7 @@ export function stampVersion(html, label) {
 export function buildSite(root, outDir, version) {
   rmSync(outDir, { recursive: true, force: true });
   mkdirSync(outDir, { recursive: true });
-  for (const entry of PUBLISHED) {
+  for (const entry of publishedEntries(root)) {
     const from = join(root, entry);
     if (!existsSync(from)) throw new Error(`Missing published file: ${entry}`);
     cpSync(from, join(outDir, entry), { recursive: true });
