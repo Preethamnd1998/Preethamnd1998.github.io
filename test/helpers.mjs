@@ -35,6 +35,9 @@ export function makeRepo() {
   run(root, ['init', '--quiet', '--bare', remote]);
   run(root, ['init', '--quiet', '-b', 'master', dir]);
   run(dir, ['remote', 'add', 'origin', remote]);
+  // The code under test runs plain git, so the repo needs its own identity for annotated tags.
+  run(dir, ['config', 'user.name', 'Test']);
+  run(dir, ['config', 'user.email', 'test@example.com']);
   let n = 0;
   const calls = /** @type {string[][]} */ ([]);
   const real = createGitRunner(dir);
