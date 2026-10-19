@@ -1,0 +1,580 @@
+{
+  "site": {
+    "url": "https://preethamnd1998.github.io/",
+    "name": "Preetham ND",
+    "role": "Software developer · Enterprise application engineer",
+    "location": "Bengaluru, India",
+    "email": "preethamnd456@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/preetham-nd",
+    "github": "https://github.com/Preethamnd1998",
+    "githubUser": "Preethamnd1998",
+    "ogImage": "assets/img/og-image.png",
+    "updated": "2026-10-17"
+  },
+  "nav": [
+    {
+      "href": "index.html",
+      "label": "About"
+    },
+    {
+      "href": "work.html",
+      "label": "Work"
+    },
+    {
+      "href": "skills.html",
+      "label": "Skills"
+    },
+    {
+      "href": "toolkit.html",
+      "label": "Toolkit"
+    },
+    {
+      "href": "experience.html",
+      "label": "Experience"
+    },
+    {
+      "href": "contact.html",
+      "label": "Contact"
+    }
+  ],
+  "home": {
+    "title": "Preetham ND · Software Developer & Enterprise Application Engineer",
+    "description": "Preetham ND builds enterprise healthcare software with Java, Spring Boot, Angular and React, and AI-assisted engineering tooling for development teams.",
+    "eyebrow": "Software developer · Enterprise application engineer",
+    "headline": "I build the software behind real hospital workflows.",
+    "subtitle": "Java and Spring Boot services, Angular and React interfaces, and AI-assisted tooling that helps a team ship them safely.",
+    "about": [
+      "I’m a full-stack developer working on an enterprise healthcare product: electronic health records, billing, procurement, inventory and the workflow engine that ties them together.",
+      "Most of my work is turning detailed business rules into services and screens that behave predictably: clear APIs, careful validation and permissions, and data that stays consistent across modules.",
+      "Alongside product work, I build the AI-assisted developer platform my team uses to plan, fix, migrate and test code, with approval gates and read-only access to production data built in."
+    ],
+    "focus": [
+      {
+        "icon": "server",
+        "title": "Backend engineering",
+        "text": "Java, Spring Boot and Spring Security services, REST APIs, JPA and Hibernate, organised as microservices."
+      },
+      {
+        "icon": "monitor",
+        "title": "Frontend engineering",
+        "text": "Angular and React with TypeScript: component-based screens for complex clinical and operational workflows."
+      },
+      {
+        "icon": "workflow",
+        "title": "Workflow orchestration",
+        "text": "Sequential and parallel workflows, approval flows and state transitions for business processes."
+      },
+      {
+        "icon": "heart",
+        "title": "Healthcare systems",
+        "text": "EHR workflows across OPD, IPD, emergency and daycare, plus the billing, procurement and inventory around them."
+      },
+      {
+        "icon": "sparkle",
+        "title": "AI-assisted development",
+        "text": "Claude Code commands, agents and MCP integrations that make engineering work faster without giving up review."
+      },
+      {
+        "icon": "flask",
+        "title": "Quality & release",
+        "text": "JUnit, Mockito, Jasmine and Karma tests, automated builds, and disciplined, versioned releases."
+      }
+    ]
+  },
+  "work": {
+    "title": "Work · Preetham ND",
+    "description": "Case studies from Preetham ND's work on an enterprise healthcare platform: workflow engine, procurement, inventory, billing, accounts, clinical EHR and upload engine.",
+    "intro": "Most of my work is on one large enterprise healthcare platform, built by a team. These case studies describe the parts I’ve worked on. They stay at a high level: no source code, internal names, patient data or proprietary details.",
+    "platform": {
+      "title": "The platform at a glance",
+      "text": "An enterprise healthcare product built as Spring Boot microservices with Angular web clients. Services own their data in PostgreSQL or MongoDB and share events through Apache Kafka. Each service keeps HTTP handling, business logic and data access in separate layers.",
+      "facts": [
+        {
+          "label": "Backend",
+          "value": "Java, Spring Boot, Spring Security, JPA / Hibernate"
+        },
+        {
+          "label": "Frontend",
+          "value": "Angular, TypeScript"
+        },
+        {
+          "label": "Data",
+          "value": "PostgreSQL, MongoDB"
+        },
+        {
+          "label": "Integration",
+          "value": "REST APIs, Apache Kafka events"
+        },
+        {
+          "label": "Testing",
+          "value": "JUnit 5 and Mockito, Jasmine and Karma, Playwright for end-to-end"
+        },
+        {
+          "label": "Delivery",
+          "value": "Git-based merge requests, CI pipelines, staged environments"
+        }
+      ]
+    },
+    "caseStudies": [
+      {
+        "id": "workflow-engine",
+        "title": "Workflow engine",
+        "summary": "The engine that runs configurable business processes and approvals across the platform.",
+        "context": "Team-built platform · my contributions",
+        "challenge": "Hospital operations depend on multi-step processes, such as approvals and hand-offs between departments, that differ from one customer to the next. Hard-coding each one doesn’t scale.",
+        "contribution": "Worked on the workflow engine that executes configurable processes, including sequential and parallel execution, state transitions and approval flows.",
+        "highlights": [
+          "Configurable processes and approval flows instead of hard-coded steps.",
+          "Sequential execution, where each step starts only after the previous one finishes.",
+          "Parallel execution, where independent steps run together and the workflow continues once they have all finished.",
+          "Explicit state transitions so every workflow instance is always in a known state."
+        ],
+        "deepDive": {
+          "title": "Sequential vs. parallel execution",
+          "points": [
+            {
+              "term": "Sequential",
+              "text": "Order is guaranteed, so a step can rely on the output of the one before it. It’s simpler to reason about and recover, but the total time is the sum of every step."
+            },
+            {
+              "term": "Parallel",
+              "text": "Independent steps run at the same time, which shortens the overall flow. In exchange, the engine has to join the branches, decide what happens when one fails, and keep shared state consistent."
+            },
+            {
+              "term": "Choosing",
+              "text": "Steps with data dependencies stay sequential; independent approvals or notifications can branch. Making that a configuration choice keeps the engine general."
+            }
+          ]
+        },
+        "tech": [
+          "Java",
+          "Spring Boot",
+          "Angular",
+          "Microservices",
+          "REST APIs"
+        ]
+      },
+      {
+        "id": "procurement",
+        "title": "Procurement management",
+        "summary": "The purchasing lifecycle, from request for quotation to rate contracts and approvals.",
+        "context": "Team-built platform · my contributions",
+        "challenge": "Hospital purchasing runs through several stages and approvals, and each stage feeds stock, billing and accounts downstream.",
+        "contribution": "Worked on procurement capabilities across the purchasing lifecycle.",
+        "highlights": [
+          "Request for quotation (RFQ) and quotation management.",
+          "Rate contracts for agreed supplier pricing.",
+          "Approval workflows built on the platform’s workflow engine.",
+          "Integration with inventory so purchases flow into stock."
+        ],
+        "tech": [
+          "Java",
+          "Spring Boot",
+          "Angular",
+          "PostgreSQL",
+          "Apache Kafka"
+        ]
+      },
+      {
+        "id": "inventory",
+        "title": "Inventory management",
+        "summary": "Stock, items and unit conversions, with indent and return flows connected to procurement.",
+        "context": "Team-built platform · my contributions",
+        "challenge": "Items are bought in one unit and issued in another, and stock moves between stores and departments. Quantities have to stay correct at every step.",
+        "contribution": "Worked on inventory operations and their integration with procurement and other modules.",
+        "highlights": [
+          "Stock and item management.",
+          "Unit-of-measure conversions between purchase and issue units.",
+          "Indent (internal request) and return flows.",
+          "Integration with procurement, billing and clinical modules, including consumption of non-stock items."
+        ],
+        "tech": [
+          "Java",
+          "Spring Boot",
+          "Angular",
+          "PostgreSQL",
+          "Apache Kafka"
+        ]
+      },
+      {
+        "id": "billing",
+        "title": "Billing & advance management",
+        "summary": "Billing, patient advances and refunds, with permission-based limits and validation.",
+        "context": "Team-built platform · my contributions",
+        "challenge": "Billing touches money and many modules at once. Every transaction has to be validated, permitted for the user making it, and consistent with the rest of the system.",
+        "contribution": "Worked on billing and advance-management flows.",
+        "highlights": [
+          "Billing workflows and invoice generation.",
+          "Advance management: collecting, tracking and applying patient advances.",
+          "Refund handling with permission-based limits.",
+          "Validation of financial transactions and role-based access through Spring Security."
+        ],
+        "tech": [
+          "Java",
+          "Spring Boot",
+          "Spring Security",
+          "Angular",
+          "REST APIs"
+        ]
+      },
+      {
+        "id": "accounts",
+        "title": "Accounts & financial workflows",
+        "summary": "Accounting-related workflows connected to billing and day-to-day operations.",
+        "context": "Team-built platform · my contributions",
+        "challenge": "Financial records have to reflect what billing and operations actually did, under the business rules finance teams rely on.",
+        "contribution": "Worked on accounting-related workflows and their integration with billing and enterprise operations.",
+        "highlights": [
+          "Financial processing that applies the platform’s business rules.",
+          "Integration with billing and other enterprise modules."
+        ],
+        "tech": [
+          "Java",
+          "Spring Boot",
+          "Angular"
+        ]
+      },
+      {
+        "id": "clinical-ehr",
+        "title": "Clinical EHR platform",
+        "summary": "Electronic health record workflows for doctors and nurses across every care setting.",
+        "context": "Team-built platform · my contributions",
+        "challenge": "Clinical screens have to fit very different settings (outpatient, inpatient, emergency and daycare) and roles, while enforcing what must be recorded.",
+        "contribution": "Worked on clinical workflows and their configuration across care settings.",
+        "highlights": [
+          "OPD, IPD, emergency and daycare workflows.",
+          "Clinical casesheets and dashboards for doctors and nurses.",
+          "Medication and eMAR (electronic medication administration record) workflows.",
+          "Role-based access, configurable components with inherited configuration, and mandatory-field validation.",
+          "Integrations with other clinical services."
+        ],
+        "tech": [
+          "Java",
+          "Spring Boot",
+          "Angular",
+          "MongoDB"
+        ]
+      },
+      {
+        "id": "upload-engine",
+        "title": "Upload engine",
+        "summary": "A shared framework for uploading, validating and processing files across modules.",
+        "context": "Team-built platform · my contributions",
+        "challenge": "Many modules need bulk data and document uploads. A shared framework avoids each module reinventing validation, storage and error reporting.",
+        "contribution": "Worked on the platform’s core upload framework.",
+        "highlights": [
+          "One upload framework reused across modules instead of one per module.",
+          "Validation and error handling for uploaded data before it is processed."
+        ],
+        "tech": [
+          "Java",
+          "Spring Boot",
+          "Angular"
+        ]
+      }
+    ],
+    "personal": [
+      {
+        "title": "Employee management app",
+        "text": "A React single-page app with login, registration and an employee list, using React Router and JWT-authenticated calls to a REST backend.",
+        "tech": [
+          "React",
+          "Vite",
+          "React Router",
+          "Axios",
+          "JWT"
+        ],
+        "repo": "Projects",
+        "href": "https://github.com/Preethamnd1998/Projects/tree/master"
+      },
+      {
+        "title": "This website",
+        "text": "A static portfolio with no runtime dependencies, generated from structured content, versioned from Git tags and released with Conventional Commits.",
+        "tech": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Node.js",
+          "GitHub Actions"
+        ],
+        "repo": "Preethamnd1998.github.io",
+        "href": "https://github.com/Preethamnd1998/Preethamnd1998.github.io"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Skills · Preetham ND",
+    "description": "Skills of Preetham ND: Java, Spring Boot, Angular, React, TypeScript, Python, PostgreSQL, MongoDB, microservices, Kafka, testing, CI/CD and AI-assisted development with Claude Code and MCP.",
+    "intro": "Grouped by area, with where each one shows up in my work. No percentages or star ratings.",
+    "groups": [
+      {
+        "icon": "code",
+        "title": "Core engineering",
+        "items": [
+          "Java",
+          "TypeScript",
+          "JavaScript",
+          "SQL",
+          "Object-oriented design",
+          "REST API design"
+        ],
+        "usedIn": "Everything below."
+      },
+      {
+        "icon": "server",
+        "title": "Backend",
+        "items": [
+          "Spring Boot",
+          "Spring Security",
+          "Spring Data JPA",
+          "Hibernate",
+          "REST APIs",
+          "Maven"
+        ],
+        "usedIn": "Workflow engine, procurement, inventory, billing, accounts and clinical services."
+      },
+      {
+        "icon": "monitor",
+        "title": "Frontend",
+        "items": [
+          "Angular",
+          "React",
+          "TypeScript",
+          "Component-based UI",
+          "Responsive UI"
+        ],
+        "usedIn": "Platform web clients and the employee management app."
+      },
+      {
+        "icon": "terminal",
+        "title": "Python & automation",
+        "items": [
+          "Python",
+          "Scripting and automation",
+          "Developer tooling"
+        ],
+        "usedIn": "Tooling for the AI developer platform."
+      },
+      {
+        "icon": "database",
+        "title": "Databases & data access",
+        "items": [
+          "PostgreSQL",
+          "MongoDB",
+          "JPA / Hibernate"
+        ],
+        "usedIn": "Service data stores across the platform."
+      },
+      {
+        "icon": "layers",
+        "title": "Architecture & distributed systems",
+        "items": [
+          "Microservices",
+          "Apache Kafka",
+          "Workflow orchestration",
+          "Asynchronous processing",
+          "Role-based access control",
+          "Data consistency across modules"
+        ],
+        "usedIn": "Workflow engine and the integrations between modules."
+      },
+      {
+        "icon": "flask",
+        "title": "Testing & quality",
+        "items": [
+          "JUnit 5",
+          "Mockito",
+          "Jasmine",
+          "Karma",
+          "Playwright",
+          "TypeScript checks",
+          "CI pipelines"
+        ],
+        "usedIn": "Platform testing standards and this site’s release tooling."
+      },
+      {
+        "icon": "git",
+        "title": "DevOps & delivery",
+        "items": [
+          "Git",
+          "GitHub",
+          "GitLab",
+          "CI/CD",
+          "macOS development",
+          "Production troubleshooting"
+        ],
+        "usedIn": "Day-to-day delivery and support."
+      },
+      {
+        "icon": "sparkle",
+        "title": "AI-assisted development",
+        "items": [
+          "Claude Code",
+          "Agentic workflows",
+          "Reusable commands and skills",
+          "MCP integrations",
+          "Knowledge-graph tooling",
+          "Context management",
+          "Prompt quality review"
+        ],
+        "usedIn": "The Enterprise AI Platform described on the Toolkit page."
+      },
+      {
+        "icon": "heart",
+        "title": "Healthcare domain",
+        "items": [
+          "EHR workflows",
+          "OPD, IPD, emergency and daycare",
+          "eMAR",
+          "Hospital billing",
+          "Procurement and inventory"
+        ],
+        "usedIn": "The clinical and operational modules in my case studies."
+      }
+    ]
+  },
+  "toolkit": {
+    "title": "Engineering Toolkit · Preetham ND",
+    "description": "Preetham ND's Enterprise AI Platform: Claude Code commands, agents and read-only MCP integrations that help an engineering team plan, fix, migrate and test code with approval gates.",
+    "intro": "I build and maintain an AI developer platform that my team uses with Claude Code, the Claude desktop app and other coding assistants. It turns everyday engineering jobs into repeatable commands with the same rules every time.",
+    "principles": [
+      {
+        "title": "Approval before change",
+        "text": "Every command that edits code or data stops for a human go-ahead first. Skipping the gate is an explicit opt-in."
+      },
+      {
+        "title": "Read-only by default",
+        "text": "Integrations with databases, the issue tracker, source control, logs and metrics are read-only. Data fixes are written as scripts for review, never run."
+      },
+      {
+        "title": "Load only what’s needed",
+        "text": "Coding standards, rules and domain knowledge are loaded on demand for the task at hand instead of all at once."
+      },
+      {
+        "title": "One source of truth",
+        "text": "A single command registry drives every assistant integration, and CI rejects commands that are referenced but not defined."
+      },
+      {
+        "title": "Portable core",
+        "text": "Company-specific knowledge sits behind one profile file, so the core can be reused by another team."
+      },
+      {
+        "title": "Knowledge-graph first",
+        "text": "Agents ask a code knowledge graph for flows, usages and impact before scanning source files."
+      }
+    ],
+    "groups": [
+      {
+        "title": "Delivery",
+        "items": [
+          {
+            "name": "Bug fix",
+            "text": "Root-causes a defect from a ticket, stack trace, log or screenshot and proposes a fix for approval."
+          },
+          {
+            "name": "New development",
+            "text": "Designs and implements features from a story, document or screenshot."
+          },
+          {
+            "name": "AI developer agent",
+            "text": "Executes a written plan or spec end to end: analyse, plan, execute, validate, fix. Single- or multi-agent."
+          },
+          {
+            "name": "Migration",
+            "text": "Moves a change between branches or releases, either as the smallest exact diff or as the full capability."
+          },
+          {
+            "name": "UI design update",
+            "text": "Fixes UI bugs or applies design changes while preserving Angular bindings or Flutter widget structure."
+          }
+        ]
+      },
+      {
+        "title": "Planning & review",
+        "items": [
+          {
+            "name": "Planning",
+            "text": "Turns a story or bug report into a technical plan and a test-case sheet."
+          },
+          {
+            "name": "Plan reviewer",
+            "text": "Scores a plan against real evidence (code, database, logs, metrics, events, requirements) and only approves it when every score clears the bar."
+          },
+          {
+            "name": "Bulk issue report",
+            "text": "Summarises a list of tickets with status and evidence-backed root causes. Read-only."
+          }
+        ]
+      },
+      {
+        "title": "Quality",
+        "items": [
+          {
+            "name": "Test",
+            "text": "Detects the test stack, reports coverage gaps for a change and scaffolds the missing tests."
+          },
+          {
+            "name": "Data correction",
+            "text": "Analyses data issues and writes correction scripts for manual review. It never runs them."
+          },
+          {
+            "name": "Prompt audit",
+            "text": "Scores prompts against the CRISP framework and suggests a tighter rewrite."
+          }
+        ]
+      },
+      {
+        "title": "Knowledge",
+        "items": [
+          {
+            "name": "Knowledge capture",
+            "text": "Records what was learned during a task so later agents can reuse it."
+          },
+          {
+            "name": "Usage report",
+            "text": "Summarises prompt and session history with quality scoring."
+          }
+        ]
+      }
+    ],
+    "integrations": "Works with Claude Code, the Claude desktop app (packaged as a plugin), GitHub Copilot and OpenCode, plus a standalone runner for unattended tasks with iteration, attempt and timeout limits."
+  },
+  "experience": {
+    "title": "Experience · Preetham ND",
+    "description": "Work experience of Preetham ND: full-stack engineering on an enterprise healthcare platform, and enterprise technical support.",
+    "intro": "Full-stack product engineering today, built on years of hands-on technical support.",
+    "roles": [
+      {
+        "title": "Software Engineer, Full Stack",
+        "org": "Enterprise healthcare · Lifetrenz EHR product suite",
+        "period": "Jan 2025 – Present",
+        "summary": "Building backend and frontend features for an enterprise healthcare platform with Java, Spring Boot, Angular and React, in an Agile team.",
+        "points": [
+          "Workflow engine: configurable sequential and parallel workflows and approval flows.",
+          "Procurement and inventory: RFQs, quotations, rate contracts, unit conversions, indents and returns.",
+          "Billing, advances, refunds and accounts, with permission-based limits and validation.",
+          "Clinical EHR workflows across OPD, IPD, emergency and daycare, including eMAR.",
+          "The shared upload framework used across modules.",
+          "The team’s AI developer platform for planning, fixing, migrating and testing code."
+        ]
+      },
+      {
+        "title": "Technical Support Engineer",
+        "org": "PJB Engineers Pvt Ltd, Bengaluru",
+        "period": "Nov 2016 – Mar 2024",
+        "summary": "Supported enterprise customers on business-critical software, working closely with development teams to find and fix problems.",
+        "points": [
+          "Diagnosed and resolved issues in enterprise software applications.",
+          "Worked with cross-functional teams on system improvements, upgrades and deployments.",
+          "Wrote and maintained documentation and knowledge-base articles.",
+          "Trained end users and gave them technical guidance."
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact · Preetham ND",
+    "description": "Contact Preetham ND, a software developer in Bengaluru, by email, LinkedIn or GitHub.",
+    "intro": "For opportunities, collaborations or a question about my work, email is the quickest way to reach me."
+  }
+}
