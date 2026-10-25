@@ -337,3 +337,73 @@ a.pager-link:hover { border-color: var(--accent); color: var(--accent); }
   .pager-empty { display: none; }
   .pager-next { text-align: left; }
 }
+
+/* Humanize-inspired opening and persistent theme control */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --text:#1d1d1f; --text-2:#515154; --text-3:#6e6e73; --bg:#fff; --bg-alt:#f5f5f7;
+  --surface:#fff; --border:rgba(0,0,0,.08); --accent:#0066cc; --accent-hover:#0055b0;
+  --accent-soft:#eaf3ff; --nav-bg:rgba(255,255,255,.82); --hero-glow:#e6f0ff;
+  --footer-bg:#1d1d1f; --footer-text:#a1a1a6; --shadow:0 10px 30px rgba(0,0,0,.07);
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --text:#f5f5f7; --text-2:#c7c7cc; --text-3:#98989d; --bg:#070709; --bg-alt:#101012;
+  --surface:#1c1c1e; --border:rgba(255,255,255,.12); --accent:#2997ff; --accent-hover:#5aafff;
+  --accent-soft:rgba(41,151,255,.14); --nav-bg:rgba(7,7,9,.82); --hero-glow:#10131a;
+  --footer-bg:#101012; --footer-text:#a1a1a6; --shadow:0 10px 30px rgba(0,0,0,.5);
+}
+.navbar-actions { display:flex; align-items:center; gap:.5rem; }
+.theme-toggle { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--border); border-radius:50%; color:var(--text); background:var(--surface); cursor:pointer; transition:background 180ms ease, transform 180ms ease; }
+.theme-toggle:hover { background:var(--accent-soft); transform:rotate(-8deg); }
+.theme-icon { width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.theme-icon-moon { display:none; }
+:root[data-theme="dark"] .theme-icon-sun { display:none; }
+:root[data-theme="dark"] .theme-icon-moon { display:block; }
+.humanize-intro, .humanize-quote { position:relative; isolation:isolate; min-height:100svh; overflow:hidden; }
+.humanize-intro { display:flex; flex-direction:column; justify-content:space-between; padding:calc(var(--nav-h) + 1.5rem) clamp(1.25rem,5vw,5rem) 1.5rem; color:#f5f5f7; background:#08090b; }
+.humanize-intro::before { content:""; position:absolute; inset:0; z-index:-1; background-image:radial-gradient(rgba(255,255,255,.23) .8px,transparent .9px); background-size:22px 22px; opacity:.32; mask-image:linear-gradient(to bottom,black 15%,transparent 96%); }
+.humanize-topline { display:flex; align-items:center; justify-content:space-between; gap:1rem; font-size:.72rem; letter-spacing:.16em; }
+.humanize-brand { color:#f5f5f7; font-weight:700; }
+.humanize-role { color:#9b9ba2; }
+.humanize-stage { width:min(100%,1100px); margin:auto; padding:clamp(2rem,6vh,5rem) 0; }
+.dot-word { color:transparent; font-size:clamp(4.3rem,17vw,14rem); font-weight:500; letter-spacing:-.085em; line-height:.82; text-align:center; white-space:nowrap; background-image:radial-gradient(circle,rgba(245,245,247,.92) 1px,transparent 1.2px); background-size:5px 5px; background-position:center; background-clip:text; -webkit-background-clip:text; user-select:none; margin:0 0 clamp(2rem,7vh,5rem); }
+.humanize-copy { width:min(100%,900px); margin:0 auto; }
+.humanize-copy .eyebrow { color:#a1a1aa; }
+.humanize-copy h1 { color:#f5f5f7; font-size:clamp(2.4rem,6vw,5.4rem); max-width:900px; line-height:.99; letter-spacing:-.065em; }
+.humanize-copy .hero-subtitle { color:#c7c7cc; max-width:800px; font-size:clamp(1.05rem,2.2vw,1.5rem); font-weight:400; line-height:1.45; margin-top:1.25rem; }
+.humanize-intro .hero-cta { justify-content:flex-start; }
+.humanize-intro .btn-primary { background:#f5f5f7; border-color:#f5f5f7; color:#111; }
+.humanize-intro .btn-primary:hover { background:#dcdce0; border-color:#dcdce0; }
+.humanize-intro .btn-outline { border-color:#53535a; color:#f5f5f7; }
+.humanize-intro .btn-outline:hover { background:#242429; }
+.humanize-intro .btn-ghost { color:#c7c7cc; }
+.humanize-next { display:inline-flex; align-items:center; gap:.8rem; margin-top:2rem; color:#9b9ba2; font-size:.68rem; letter-spacing:.16em; }
+.humanize-next span:last-child { font-size:1.1rem; transition:transform 180ms ease; }
+.humanize-next:hover { color:#fff; }
+.humanize-next:hover span:last-child { transform:translateY(3px); }
+.humanize-index { color:#777780; font-size:.68rem; letter-spacing:.14em; }
+.humanize-quote { display:grid; place-items:center; padding:clamp(5rem,12vw,10rem) clamp(1.5rem,9vw,9rem); background:#f4f2ed; color:#191919; }
+:root[data-theme="dark"] .humanize-quote { background:#101012; color:#f5f5f7; }
+.quote-grain { position:absolute; inset:0; z-index:-1; opacity:.22; background-image:radial-gradient(#888 0.55px,transparent .7px); background-size:13px 13px; }
+.humanize-quote blockquote { width:min(100%,1000px); }
+.quote-mark { display:block; font-family:Georgia,serif; font-size:clamp(5rem,14vw,10rem); line-height:.6; color:#99958d; }
+.humanize-quote blockquote p { color:inherit; font-size:clamp(2.5rem,7.6vw,7rem); line-height:.98; letter-spacing:-.07em; font-weight:500; }
+.humanize-quote blockquote footer { display:flex; flex-direction:column; align-items:flex-start; gap:.25rem; margin-top:clamp(2rem,6vw,4rem); }
+.signature { font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive; font-size:clamp(2.5rem,5vw,4rem); font-style:italic; letter-spacing:-.06em; line-height:1.1; transform:rotate(-5deg); transform-origin:left center; }
+.signature-caption { font-size:.75rem; color:#77736c; letter-spacing:.14em; text-transform:uppercase; }
+:root[data-theme="dark"] .signature-caption { color:#a1a1aa; }
+.humanize-quote .humanize-index { position:absolute; bottom:1.5rem; left:clamp(1.25rem,5vw,5rem); }
+@media (max-width:768px) {
+  .navbar-actions { gap:.25rem; }
+  .theme-toggle { width:40px; height:40px; }
+  .humanize-intro { padding-left:1.25rem; padding-right:1.25rem; }
+  .humanize-role { font-size:.6rem; }
+  .dot-word { font-size:clamp(3.7rem,15.5vw,7rem); letter-spacing:-.09em; background-size:4px 4px; margin-bottom:2.5rem; }
+  .humanize-copy h1 { font-size:clamp(2.45rem,10.5vw,4.2rem); }
+  .humanize-copy .hero-cta { align-items:stretch; }
+  .humanize-copy .hero-cta .btn { width:100%; }
+  .humanize-quote { min-height:85svh; }
+}
+@media (max-width:380px) { .dot-word { font-size:14vw; } .humanize-role { letter-spacing:.08em; } }
+@media (prefers-reduced-motion:reduce) { .humanize-next span:last-child { transition:none; } }

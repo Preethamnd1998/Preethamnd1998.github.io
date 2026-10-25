@@ -75,9 +75,11 @@ export function layout(data, page) {
     <nav class="navbar" id="navbar" aria-label="Main navigation">
       <div class="container">
         <a href="${base}index.html" class="navbar-brand">${esc(site.name)}<span aria-hidden="true">.</span></a>
-        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-controls="navbarMenu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <div class="navbar-actions">        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="false" title="Toggle light and dark theme"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path></svg></button>
+          <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-controls="navbarMenu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
         <ul class="navbar-menu" id="navbarMenu">
 ${navItems}
           <li class="navbar-social">
@@ -192,17 +194,32 @@ function home(data) {
     sameAs: [site.linkedin, site.github],
     knowsAbout: ['Java', 'Spring Boot', 'Angular', 'React', 'Microservices', 'Healthcare software', 'AI-assisted development'],
   };
-  const body = `      <section class="hero">
-        <div class="container hero-content">
-          <span class="eyebrow">${esc(h.eyebrow)}</span>
-          <h1>${esc(h.headline)}</h1>
-          <p class="hero-subtitle">${esc(h.subtitle)}</p>
-          <div class="hero-cta">
-            <a href="work.html" class="btn btn-primary">Explore projects ${icon('arrow-right', 'icon icon-sm')}</a>
-            <a href="work.html#repositories" class="btn btn-outline">${icon('github', 'icon icon-sm')} GitHub repositories</a>
-            <a href="contact.html" class="btn btn-ghost">Contact me</a>
+  const body = `      <section class="humanize-intro" aria-label="Introduction">
+        <div class="humanize-topline"><span class="humanize-brand">${esc(site.name)}</span><span class="humanize-role">FULL-STACK ENGINEER</span></div>
+        <div class="humanize-stage">
+          <div class="dot-word" aria-hidden="true">Humanize</div>
+          <div class="humanize-copy">
+            <span class="eyebrow">${esc(h.eyebrow)}</span>
+            <h1>${esc(h.headline)}</h1>
+            <p class="hero-subtitle">${esc(h.subtitle)}</p>
+            <div class="hero-cta">
+              <a href="work.html" class="btn btn-primary">Explore projects ${icon('arrow-right', 'icon icon-sm')}</a>
+              <a href="work.html#repositories" class="btn btn-outline">${icon('github', 'icon icon-sm')} GitHub repositories</a>
+              <a href="contact.html" class="btn btn-ghost">Contact me</a>
+            </div>
+            <a href="#humanize-quote" class="humanize-next" aria-label="Continue to the signed quote"><span>SCROLL TO EXPLORE</span><span aria-hidden="true">↓</span></a>
           </div>
         </div>
+        <span class="humanize-index">01 / 02</span>
+      </section>
+      <section class="humanize-quote" id="humanize-quote" aria-label="Personal quote">
+        <div class="quote-grain" aria-hidden="true"></div>
+        <blockquote>
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p>${esc(h.headline)}</p>
+          <footer><span class="signature">Preetham</span><span class="signature-caption">— Preetham ND</span></footer>
+        </blockquote>
+        <span class="humanize-index">02 / 02</span>
       </section>
 
       <section class="section" id="about">

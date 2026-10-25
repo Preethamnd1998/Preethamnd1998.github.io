@@ -30,9 +30,11 @@
     <nav class="navbar" id="navbar" aria-label="Main navigation">
       <div class="container">
         <a href="index.html" class="navbar-brand">Preetham ND<span aria-hidden="true">.</span></a>
-        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-controls="navbarMenu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <div class="navbar-actions">        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" aria-pressed="false" title="Toggle light and dark theme"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path></svg></button>
+          <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-controls="navbarMenu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
         <ul class="navbar-menu" id="navbarMenu">
           <li><a href="index.html">About</a></li>
           <li><a href="work.html" aria-current="page">Work</a></li>
