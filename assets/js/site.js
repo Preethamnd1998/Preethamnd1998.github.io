@@ -1,13 +1,36 @@
 (function () {
   'use strict';
 
+  // Theme preference is shared across every page on this site.
+  var root = document.documentElement;
+  var themeToggle = document.getElementById('themeToggle');
+  var storedTheme = null;
+  try { storedTheme = window.localStorage.getItem('portfolio-theme'); } catch (_) {}
+  var initialTheme = storedTheme === 'light' || storedTheme === 'dark'
+    ? storedTheme
+    : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', initialTheme);
+  function updateThemeButton(theme) {
+    if (!themeToggle) return;
+    var dark = theme === 'dark';
+    themeToggle.setAttribute('aria-pressed', String(dark));
+    themeToggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    themeToggle.setAttribute('title', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+  updateThemeButton(initialTheme);
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { window.localStorage.setItem('portfolio-theme', next); } catch (_) {}
+      updateThemeButton(next);
+    });
+  }
+
   // Navbar border once the page scrolls
   var navbar = document.getElementById('navbar');
   if (navbar) {
-    var bar = navbar;
-    var onScroll = function () {
-      bar.classList.toggle('scrolled', window.scrollY > 8);
-    };
+    var onScroll = function () { navbar.classList.toggle('scrolled', window.scrollY > 8); };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
@@ -16,32 +39,30 @@
   var toggle = document.getElementById('menuToggle');
   var menu = document.getElementById('navbarMenu');
   if (toggle && menu) {
-    var btn = toggle;
-    var list = menu;
-    var setMenu = function (/** @type {boolean} */ open) {
-      list.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', String(open));
+    var setMenu = function (open) {
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
     };
-    btn.addEventListener('click', function () {
-      setMenu(btn.getAttribute('aria-expanded') !== 'true');
-    });
+    toggle.addEventListener('click', function () { setMenu(toggle.getAttribute('aria-expanded') !== 'true'); });
     document.addEventListener('click', function (e) {
-      var target = /** @type {Node | null} */ (e.target);
-      if (!list.contains(target) && !btn.contains(target)) setMenu(false);
+      var target = e.target;
+      if (!menu.contains(target) && !toggle.contains(target)) setMenu(false);
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
         setMenu(false);
-        btn.focus();
+        toggle.focus();
       }
     });
-    list.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () { setMenu(false); });
-    });
+    menu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { setMenu(false); }); });
   }
 
-  // Reveal content as it scrolls into view
+  // Reduced-motion users still get all content without entrance animations.
   var items = document.querySelectorAll('.reveal');
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
   if (!('IntersectionObserver' in window)) {
     items.forEach(function (el) { el.classList.add('is-visible'); });
     return;
