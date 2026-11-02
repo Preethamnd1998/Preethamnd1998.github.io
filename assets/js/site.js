@@ -58,102 +58,106 @@
   }
 
 
-  // Interactive dotted lettering: pointer movement creates a soft fluid displacement.
-  var humanizeCanvas = document.getElementById('humanizeCanvas');
-  if (humanizeCanvas && humanizeCanvas.getContext) {
-    var humanizeCtx = humanizeCanvas.getContext('2d');
-    var humanizeStage = humanizeCanvas.parentElement;
-    var humanizeDots = [];
-    var humanizePointer = { x: -10000, y: -10000, active: false };
-    var humanizeReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var humanizeWidth = 0, humanizeHeight = 0, humanizeDpr = 1, humanizeFrame = 0;
-    function buildHumanizeDots() {
-      var rect = humanizeCanvas.getBoundingClientRect();
-      humanizeWidth = Math.max(1, rect.width);
-      humanizeHeight = Math.max(1, rect.height);
-      humanizeDpr = Math.min(window.devicePixelRatio || 1, 2);
-      humanizeCanvas.width = Math.round(humanizeWidth * humanizeDpr);
-      humanizeCanvas.height = Math.round(humanizeHeight * humanizeDpr);
-      humanizeCtx.setTransform(humanizeDpr, 0, 0, humanizeDpr, 0, 0);
-      var offscreen = document.createElement('canvas');
-      offscreen.width = Math.ceil(humanizeWidth);
-      offscreen.height = Math.ceil(humanizeHeight);
-      var offCtx = offscreen.getContext('2d', { willReadFrequently: true });
-      var fontSize = Math.min(humanizeWidth * 0.205, humanizeHeight * 0.82, 250);
-      offCtx.font = '500 ' + fontSize + 'px Arial, Helvetica, sans-serif';
-      offCtx.textAlign = 'center';
-      offCtx.textBaseline = 'middle';
-      offCtx.fillStyle = '#fff';
-      offCtx.fillText('Humanize', humanizeWidth / 2, humanizeHeight / 2);
-      var pixels = offCtx.getImageData(0, 0, offscreen.width, offscreen.height).data;
-      var stride = humanizeWidth < 600 ? 4 : 5;
-      humanizeDots = [];
-      for (var y = 0; y < offscreen.height; y += stride) {
-        for (var x = 0; x < offscreen.width; x += stride) {
-          if (pixels[(y * offscreen.width + x) * 4 + 3] > 80) {
-            humanizeDots.push({ ox:x, oy:y, x:x, y:y, vx:0, vy:0 });
-          }
+  // Responsive, touch-aware dotted typography for both the title and tagline.
+  var humanizeCanvases = document.querySelectorAll('.dot-word-canvas');
+  var humanizeReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  humanizeCanvases.forEach(function (canvas) {
+    var ctx = canvas.getContext && canvas.getContext('2d');
+    if (!ctx) return;
+    var dots = [];
+    var pointer = { x: -10000, y: -10000, active: false };
+    var width = 1, height = 1, dpr = 1, frame = 0;
+    var word = canvas.getAttribute('data-word') || 'Humanize';
+    var isTagline = canvas.getAttribute('data-kind') === 'tagline';
+    function build() {
+      var rect = canvas.getBoundingClientRect();
+      width = Math.max(1, rect.width);
+      height = Math.max(1, rect.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var off = document.createElement('canvas');
+      off.width = Math.ceil(width);
+      off.height = Math.ceil(height);
+      var oc = off.getContext('2d', { willReadFrequently: true });
+      var fontSize = isTagline
+        ? Math.min(width / Math.max(10, word.length) * 1.55, height * 0.78, 28)
+        : Math.min(width * 0.255, height * 0.78, 360);
+      oc.font = (isTagline ? '500 ' : '400 ') + fontSize + 'px ' + (isTagline ? 'Arial, sans-serif' : 'Arial, Helvetica, sans-serif');
+      oc.textAlign = 'center';
+      oc.textBaseline = 'middle';
+      oc.fillStyle = '#fff';
+      oc.fillText(word, width / 2, height / 2, width * 0.96);
+      var pixels = oc.getImageData(0, 0, off.width, off.height).data;
+      var stride = width < 600 ? (isTagline ? 3 : 4) : (isTagline ? 3 : 5);
+      dots = [];
+      for (var y = 0; y < off.height; y += stride) {
+        for (var x = 0; x < off.width; x += stride) {
+          if (pixels[(y * off.width + x) * 4 + 3] > 70) dots.push({ ox:x, oy:y, x:x, y:y, vx:0, vy:0 });
         }
       }
-      renderHumanizeDots(0);
+      draw(0, true);
     }
-    function renderHumanizeDots(time) {
-      humanizeCtx.clearRect(0, 0, humanizeWidth, humanizeHeight);
-      var theme = root.getAttribute('data-theme');
-      var dotColor = theme === 'dark' ? '245,245,247' : '29,29,31';
-      var radius = humanizeWidth < 600 ? 1.05 : 1.25;
-      for (var i = 0; i < humanizeDots.length; i++) {
-        var dot = humanizeDots[i];
-        var dx = dot.x - humanizePointer.x;
-        var dy = dot.y - humanizePointer.y;
-        var distance = Math.sqrt(dx * dx + dy * dy);
-        if (!humanizeReduced && humanizePointer.active && distance < 105) {
-          var force = (105 - distance) / 105;
-          var strength = force * 2.1;
-          dot.vx += (dx / (distance || 1)) * strength;
-          dot.vy += (dy / (distance || 1)) * strength;
+    function draw(time, once) {
+      ctx.clearRect(0, 0, width, height);
+      var dark = root.getAttribute('data-theme') === 'dark';
+      var color = dark ? '245,245,247' : '29,29,31';
+      var radius = isTagline ? (width < 600 ? .8 : 1) : (width < 600 ? 1.25 : 1.65);
+      for (var i = 0; i < dots.length; i++) {
+        var p = dots[i], dx = p.x - pointer.x, dy = p.y - pointer.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (!humanizeReduced && pointer.active && dist < (isTagline ? 65 : 145)) {
+          var range = isTagline ? 65 : 145;
+          var f = (range - dist) / range;
+          var push = f * (isTagline ? 2.8 : 3.8);
+          p.vx += (dx / (dist || 1)) * push;
+          p.vy += (dy / (dist || 1)) * push;
         }
-        dot.vx += (dot.ox - dot.x) * 0.045;
-        dot.vy += (dot.oy - dot.y) * 0.045;
-        dot.vx *= 0.82;
-        dot.vy *= 0.82;
-        dot.x += dot.vx;
-        dot.y += dot.vy;
-        var shimmer = humanizeReduced ? 0 : Math.sin((dot.ox + dot.oy) * 0.025 + time * 0.001) * 0.1;
-        humanizeCtx.fillStyle = 'rgba(' + dotColor + ',' + (0.78 + shimmer) + ')';
-        humanizeCtx.beginPath();
-        humanizeCtx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
-        humanizeCtx.fill();
+        p.vx += (p.ox - p.x) * .055;
+        p.vy += (p.oy - p.y) * .055;
+        p.vx *= .79;
+        p.vy *= .79;
+        p.x += p.vx;
+        p.y += p.vy;
+        var shimmer = humanizeReduced ? 0 : Math.sin((p.ox + p.oy) * .018 + time * .0014) * .12;
+        ctx.fillStyle = 'rgba(' + color + ',' + (.82 + shimmer) + ')';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        ctx.fill();
       }
-      if (!humanizeReduced) humanizeFrame = window.requestAnimationFrame(renderHumanizeDots);
+      if (!once && !humanizeReduced) frame = window.requestAnimationFrame(draw);
     }
-    humanizeCanvas.addEventListener('pointermove', function (event) {
-      var rect = humanizeCanvas.getBoundingClientRect();
-      humanizePointer.x = event.clientX - rect.left;
-      humanizePointer.y = event.clientY - rect.top;
-      humanizePointer.active = true;
-      if (humanizeReduced) renderHumanizeDots(0);
-    });
-    humanizeCanvas.addEventListener('pointerleave', function () {
-      humanizePointer.active = false;
-      humanizePointer.x = -10000;
-      humanizePointer.y = -10000;
-    });
-    if (window.ResizeObserver) {
-      new ResizeObserver(function () {
-        if (humanizeFrame) window.cancelAnimationFrame(humanizeFrame);
-        buildHumanizeDots();
-        if (!humanizeReduced) humanizeFrame = window.requestAnimationFrame(renderHumanizeDots);
-      }).observe(humanizeCanvas);
-    } else {
-      window.addEventListener('resize', buildHumanizeDots);
+    function move(event) {
+      var rect = canvas.getBoundingClientRect();
+      pointer.x = event.clientX - rect.left;
+      pointer.y = event.clientY - rect.top;
+      pointer.active = true;
+      if (humanizeReduced) draw(0, true);
     }
-    buildHumanizeDots();
-    if (!humanizeReduced) humanizeFrame = window.requestAnimationFrame(renderHumanizeDots);
-    if (themeToggle) themeToggle.addEventListener('click', function () {
-      if (humanizeReduced) renderHumanizeDots(0);
-    });
-  }
+    function leave() {
+      pointer.active = false;
+      pointer.x = -10000;
+      pointer.y = -10000;
+      if (humanizeReduced) draw(0, true);
+    }
+    canvas.addEventListener('pointerdown', function (event) {
+      if (event.pointerType === 'touch') move(event);
+    }, { passive:true });
+    canvas.addEventListener('pointermove', move, { passive:true });
+    canvas.addEventListener('pointerup', leave, { passive:true });
+    canvas.addEventListener('pointercancel', leave, { passive:true });
+    canvas.addEventListener('pointerleave', leave, { passive:true });
+    if (window.ResizeObserver) new ResizeObserver(function () {
+      if (frame) window.cancelAnimationFrame(frame);
+      build();
+      if (!humanizeReduced) frame = window.requestAnimationFrame(draw);
+    }).observe(canvas);
+    else window.addEventListener('resize', build);
+    build();
+    if (!humanizeReduced) frame = window.requestAnimationFrame(draw);
+    if (themeToggle) themeToggle.addEventListener('click', function () { draw(0, true); });
+  });
 
   // Reduced-motion users still get all content without entrance animations.
   var items = document.querySelectorAll('.reveal');
