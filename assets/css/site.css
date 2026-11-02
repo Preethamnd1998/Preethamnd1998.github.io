@@ -670,3 +670,36 @@ a.pager-link:hover { border-color: var(--accent); color: var(--accent); }
   .humanize-quote { padding:3rem 1.15rem; }
   .humanize-quote blockquote p { font-size:1.5rem; }
 }
+
+
+/* Humanize: true viewport centering and sharper, more legible dot typography */
+.humanize-intro {
+  width:100%;
+  overflow:hidden;
+}
+.humanize-stage {
+  width:100%;
+  max-width:none;
+  align-items:stretch;
+  justify-content:center;
+  margin-inline:0;
+}
+.dot-word-canvas {
+  width:100%;
+  max-width:none;
+  align-self:stretch;
+  display:block;
+}
+.dot-tagline-canvas {
+  width:min(100%,900px);
+  align-self:center;
+}
+@media (min-width:769px) {
+  .dot-word-canvas:not(.dot-tagline-canvas) {
+    height:clamp(230px,32vw,390px);
+  }
+}
+@media (max-width:768px) {
+  .humanize-stage { width:100%; }
+  .dot-word-canvas:not(.dot-tagline-canvas) { height:clamp(150px,38vw,230px); }
+}
