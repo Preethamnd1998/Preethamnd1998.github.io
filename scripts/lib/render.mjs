@@ -196,6 +196,7 @@ function home(data) {
   };
   const body = `      <section class="humanize-intro" aria-label="Humanize">
         <div class="humanize-stage">
+          <h1 class="visually-hidden">Humanize</h1>
           <canvas class="dot-word-canvas" id="humanizeCanvas" data-word="Humanize" aria-hidden="true"></canvas>
           <canvas class="dot-word-canvas dot-tagline-canvas" data-kind="tagline" data-word="Thoughtful software. Seamless experiences." role="img" aria-label="Thoughtful software. Seamless experiences."></canvas>
         </div>
