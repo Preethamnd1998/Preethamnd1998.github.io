@@ -57,6 +57,104 @@
     menu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { setMenu(false); }); });
   }
 
+
+  // Interactive dotted lettering: pointer movement creates a soft fluid displacement.
+  var humanizeCanvas = document.getElementById('humanizeCanvas');
+  if (humanizeCanvas && humanizeCanvas.getContext) {
+    var humanizeCtx = humanizeCanvas.getContext('2d');
+    var humanizeStage = humanizeCanvas.parentElement;
+    var humanizeDots = [];
+    var humanizePointer = { x: -10000, y: -10000, active: false };
+    var humanizeReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var humanizeWidth = 0, humanizeHeight = 0, humanizeDpr = 1, humanizeFrame = 0;
+    function buildHumanizeDots() {
+      var rect = humanizeCanvas.getBoundingClientRect();
+      humanizeWidth = Math.max(1, rect.width);
+      humanizeHeight = Math.max(1, rect.height);
+      humanizeDpr = Math.min(window.devicePixelRatio || 1, 2);
+      humanizeCanvas.width = Math.round(humanizeWidth * humanizeDpr);
+      humanizeCanvas.height = Math.round(humanizeHeight * humanizeDpr);
+      humanizeCtx.setTransform(humanizeDpr, 0, 0, humanizeDpr, 0, 0);
+      var offscreen = document.createElement('canvas');
+      offscreen.width = Math.ceil(humanizeWidth);
+      offscreen.height = Math.ceil(humanizeHeight);
+      var offCtx = offscreen.getContext('2d', { willReadFrequently: true });
+      var fontSize = Math.min(humanizeWidth * 0.205, humanizeHeight * 0.82, 250);
+      offCtx.font = '500 ' + fontSize + 'px Arial, Helvetica, sans-serif';
+      offCtx.textAlign = 'center';
+      offCtx.textBaseline = 'middle';
+      offCtx.fillStyle = '#fff';
+      offCtx.fillText('Humanize', humanizeWidth / 2, humanizeHeight / 2);
+      var pixels = offCtx.getImageData(0, 0, offscreen.width, offscreen.height).data;
+      var stride = humanizeWidth < 600 ? 4 : 5;
+      humanizeDots = [];
+      for (var y = 0; y < offscreen.height; y += stride) {
+        for (var x = 0; x < offscreen.width; x += stride) {
+          if (pixels[(y * offscreen.width + x) * 4 + 3] > 80) {
+            humanizeDots.push({ ox:x, oy:y, x:x, y:y, vx:0, vy:0 });
+          }
+        }
+      }
+      renderHumanizeDots(0);
+    }
+    function renderHumanizeDots(time) {
+      humanizeCtx.clearRect(0, 0, humanizeWidth, humanizeHeight);
+      var theme = root.getAttribute('data-theme');
+      var dotColor = theme === 'dark' ? '245,245,247' : '29,29,31';
+      var radius = humanizeWidth < 600 ? 1.05 : 1.25;
+      for (var i = 0; i < humanizeDots.length; i++) {
+        var dot = humanizeDots[i];
+        var dx = dot.x - humanizePointer.x;
+        var dy = dot.y - humanizePointer.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+        if (!humanizeReduced && humanizePointer.active && distance < 105) {
+          var force = (105 - distance) / 105;
+          var strength = force * 2.1;
+          dot.vx += (dx / (distance || 1)) * strength;
+          dot.vy += (dy / (distance || 1)) * strength;
+        }
+        dot.vx += (dot.ox - dot.x) * 0.045;
+        dot.vy += (dot.oy - dot.y) * 0.045;
+        dot.vx *= 0.82;
+        dot.vy *= 0.82;
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+        var shimmer = humanizeReduced ? 0 : Math.sin((dot.ox + dot.oy) * 0.025 + time * 0.001) * 0.1;
+        humanizeCtx.fillStyle = 'rgba(' + dotColor + ',' + (0.78 + shimmer) + ')';
+        humanizeCtx.beginPath();
+        humanizeCtx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
+        humanizeCtx.fill();
+      }
+      if (!humanizeReduced) humanizeFrame = window.requestAnimationFrame(renderHumanizeDots);
+    }
+    humanizeCanvas.addEventListener('pointermove', function (event) {
+      var rect = humanizeCanvas.getBoundingClientRect();
+      humanizePointer.x = event.clientX - rect.left;
+      humanizePointer.y = event.clientY - rect.top;
+      humanizePointer.active = true;
+      if (humanizeReduced) renderHumanizeDots(0);
+    });
+    humanizeCanvas.addEventListener('pointerleave', function () {
+      humanizePointer.active = false;
+      humanizePointer.x = -10000;
+      humanizePointer.y = -10000;
+    });
+    if (window.ResizeObserver) {
+      new ResizeObserver(function () {
+        if (humanizeFrame) window.cancelAnimationFrame(humanizeFrame);
+        buildHumanizeDots();
+        if (!humanizeReduced) humanizeFrame = window.requestAnimationFrame(renderHumanizeDots);
+      }).observe(humanizeCanvas);
+    } else {
+      window.addEventListener('resize', buildHumanizeDots);
+    }
+    buildHumanizeDots();
+    if (!humanizeReduced) humanizeFrame = window.requestAnimationFrame(renderHumanizeDots);
+    if (themeToggle) themeToggle.addEventListener('click', function () {
+      if (humanizeReduced) renderHumanizeDots(0);
+    });
+  }
+
   // Reduced-motion users still get all content without entrance animations.
   var items = document.querySelectorAll('.reveal');
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

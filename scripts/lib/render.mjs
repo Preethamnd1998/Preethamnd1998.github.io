@@ -197,7 +197,7 @@ function home(data) {
   const body = `      <section class="humanize-intro" aria-label="Introduction">
         <div class="humanize-topline"><span class="humanize-brand">${esc(site.name)}</span><span class="humanize-role">FULL-STACK ENGINEER</span></div>
         <div class="humanize-stage">
-          <div class="dot-word" aria-hidden="true">Humanize</div>
+          <canvas class="dot-word-canvas" id="humanizeCanvas" aria-hidden="true"></canvas>
           <div class="humanize-copy">
             <span class="eyebrow">${esc(h.eyebrow)}</span>
             <h1>${esc(h.headline)}</h1>
