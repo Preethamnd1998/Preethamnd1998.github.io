@@ -194,32 +194,18 @@ function home(data) {
     sameAs: [site.linkedin, site.github],
     knowsAbout: ['Java', 'Spring Boot', 'Angular', 'React', 'Microservices', 'Healthcare software', 'AI-assisted development'],
   };
-  const body = `      <section class="humanize-intro" aria-label="Introduction">
-        <div class="humanize-topline"><span class="humanize-brand">${esc(site.name)}</span><span class="humanize-role">FULL-STACK ENGINEER</span></div>
+  const body = `      <section class="humanize-intro" aria-label="Humanize">
         <div class="humanize-stage">
           <canvas class="dot-word-canvas" id="humanizeCanvas" aria-hidden="true"></canvas>
-          <div class="humanize-copy">
-            <span class="eyebrow">${esc(h.eyebrow)}</span>
-            <h1>${esc(h.headline)}</h1>
-            <p class="hero-subtitle">${esc(h.subtitle)}</p>
-            <div class="hero-cta">
-              <a href="work.html" class="btn btn-primary">Explore projects ${icon('arrow-right', 'icon icon-sm')}</a>
-              <a href="work.html#repositories" class="btn btn-outline">${icon('github', 'icon icon-sm')} GitHub repositories</a>
-              <a href="contact.html" class="btn btn-ghost">Contact me</a>
-            </div>
-            <a href="#humanize-quote" class="humanize-next" aria-label="Continue to the signed quote"><span>SCROLL TO EXPLORE</span><span aria-hidden="true">↓</span></a>
-          </div>
+          <p class="humanize-tagline">Thoughtful software. Seamless experiences.</p>
         </div>
-        <span class="humanize-index">01 / 02</span>
       </section>
       <section class="humanize-quote" id="humanize-quote" aria-label="Personal quote">
         <div class="quote-grain" aria-hidden="true"></div>
         <blockquote>
-          <span class="quote-mark" aria-hidden="true">“</span>
           <p>${esc(h.headline)}</p>
-          <footer><span class="signature">Preetham</span><span class="signature-caption">— Preetham ND</span></footer>
+          <footer><span class="signature">Preetham</span></footer>
         </blockquote>
-        <span class="humanize-index">02 / 02</span>
       </section>
 
       <section class="section" id="about">
