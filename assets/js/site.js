@@ -66,7 +66,7 @@
   var humanizeCanvases = document.querySelectorAll('.dot-word-canvas');
   var humanizeReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   humanizeCanvases.forEach(function (canvas) {
-    var ctx = canvas.getContext && canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
     var dots = [];
     var pointer = { x: -10000, y: -10000, active: false };
