@@ -203,7 +203,7 @@ function home(data) {
       <section class="humanize-quote" id="humanize-quote" aria-label="Personal quote">
         <div class="quote-grain" aria-hidden="true"></div>
         <blockquote>
-          <p>A hand-stitched bag feels different. Because it's made with care, shaped by experience, built to fit. Thoughtful software deserves the same care: shaped around real workflows, refined through iteration, and built to help people do their best work.</p>
+          <p>Anyone can glue parts together, but real craft lives in what you don’t see: the clean joints behind the drywall, the balanced weight in your hand, the quiet efficiency of a tight database query. Thoughtful software isn't just assembled; it’s engineered to last.</p>
           <footer><span class="signature">Preetham</span></footer>
         </blockquote>
       </section>
