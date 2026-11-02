@@ -933,3 +933,27 @@ main > .humanize-intro {
   .humanize-quote blockquote::before { left:-.04em; }
   .humanize-quote blockquote::after { right:-.02em; }
 }
+
+
+/* Always-visible author credit beneath the quotation, aligned to the right. */
+.humanize-quote blockquote > .quote-attribution {
+  display:flex !important;
+  justify-content:flex-end !important;
+  align-items:center;
+  width:100%;
+  margin:clamp(1.25rem,3vw,2rem) 0 0;
+  padding:0 clamp(.25rem,1vw,1rem) 0 0;
+  text-align:right;
+}
+.humanize-quote .quote-attribution cite {
+  display:block;
+  color:var(--text);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(1.1rem,1.8vw,1.45rem);
+  font-style:italic;
+  font-weight:600;
+  line-height:1.4;
+  opacity:.9;
+  clip-path:none;
+  animation:none;
+}

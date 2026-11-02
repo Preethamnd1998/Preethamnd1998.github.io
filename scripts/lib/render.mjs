@@ -205,7 +205,7 @@ function home(data) {
         <div class="quote-grain" aria-hidden="true"></div>
         <blockquote>
           <p><strong>Anyone can glue parts together,</strong> but real craft lives in what you don’t see: the clean joints behind the drywall, the balanced weight in your hand, the quiet efficiency of a tight database query. Thoughtful software isn't just assembled; it’s engineered to last.</p>
-          <footer class="quote-attribution"><span class="signature">Preetham</span></footer>
+          <footer class="quote-attribution"><cite>— Preetham ND.</cite></footer>
         </blockquote>
       </section>
 
