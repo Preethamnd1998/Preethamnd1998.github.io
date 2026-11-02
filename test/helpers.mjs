@@ -37,7 +37,15 @@ export function makeRepo() {
   run(dir, ['remote', 'add', 'origin', remote]);
   let n = 0;
   const calls = /** @type {string[][]} */ ([]);
-  const real = createGitRunner(dir);
+  const real = createGitRunner(dir, {
+    ...process.env,
+    GIT_AUTHOR_NAME: 'Test',
+    GIT_AUTHOR_EMAIL: 'test@example.com',
+    GIT_COMMITTER_NAME: 'Test',
+    GIT_COMMITTER_EMAIL: 'test@example.com',
+    GIT_CONFIG_GLOBAL: '/dev/null',
+    GIT_CONFIG_NOSYSTEM: '1',
+  });
   return {
     dir,
     /** Records every git call the code under test makes. */

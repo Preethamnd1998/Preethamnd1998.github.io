@@ -8,9 +8,9 @@ import { spawnSync } from 'node:child_process';
  * @param {string} [cwd]
  * @returns {GitRunner}
  */
-export function createGitRunner(cwd = process.cwd()) {
+export function createGitRunner(cwd = process.cwd(), env = process.env) {
   return (args) => {
-    const res = spawnSync('git', args, { cwd, encoding: 'utf8' });
+    const res = spawnSync('git', args, { cwd, encoding: 'utf8', env });
     if (res.error) return { ok: false, stdout: '', stderr: String(res.error.message) };
     return { ok: res.status === 0, stdout: (res.stdout || '').trim(), stderr: (res.stderr || '').trim() };
   };
