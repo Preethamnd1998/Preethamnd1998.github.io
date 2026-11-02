@@ -587,3 +587,86 @@ a.pager-link:hover { border-color: var(--accent); color: var(--accent); }
 }
 
 .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+
+/* Humanize opening: prevent oversized text and clipping at every viewport */
+.humanize-intro {
+  height:auto;
+  min-height:calc(100svh - var(--nav-h));
+  overflow:visible;
+  padding:clamp(1.25rem,4vh,3rem) clamp(1rem,4vw,3rem);
+}
+.humanize-stage {
+  width:min(100%,1320px);
+  height:auto;
+  min-height:0;
+  gap:clamp(1.25rem,4vh,2.75rem);
+}
+.dot-word-canvas {
+  width:100%;
+  height:clamp(180px,27vw,360px);
+  max-width:1320px;
+  margin:0;
+}
+.dot-tagline-canvas {
+  width:min(100%,820px);
+  height:clamp(40px,5vw,64px);
+}
+.humanize-quote {
+  height:auto;
+  min-height:calc(100svh - var(--nav-h));
+  overflow:visible;
+  display:grid;
+  place-items:center;
+  padding:clamp(3rem,8vh,6rem) clamp(1.25rem,8vw,7rem);
+}
+.humanize-quote blockquote {
+  width:min(100%,900px);
+  margin:0 auto;
+}
+.humanize-quote blockquote p {
+  max-width:100%;
+  font-size:clamp(1.65rem,3.65vw,3.35rem);
+  line-height:1.13;
+  letter-spacing:-.045em;
+  font-weight:500;
+  overflow-wrap:break-word;
+  text-wrap:pretty;
+}
+.humanize-quote blockquote footer {
+  margin-top:clamp(1.75rem,4vh,3rem);
+}
+.humanize-quote .signature {
+  font-size:clamp(2.25rem,4.5vw,3.5rem);
+  line-height:1.2;
+}
+@media (max-width:768px) {
+  .humanize-intro {
+    min-height:calc(100svh - var(--nav-h));
+    padding:1.25rem 1rem;
+  }
+  .humanize-stage {
+    width:100%;
+    gap:clamp(1.25rem,4vh,2rem);
+  }
+  .dot-word-canvas {
+    height:clamp(135px,34vw,230px);
+  }
+  .dot-tagline-canvas {
+    width:100%;
+    height:46px;
+  }
+  .humanize-quote {
+    min-height:calc(100svh - var(--nav-h));
+    padding:3.5rem 1.35rem;
+  }
+  .humanize-quote blockquote p {
+    font-size:clamp(1.55rem,6.2vw,2.35rem);
+    line-height:1.2;
+    letter-spacing:-.035em;
+  }
+}
+@media (max-width:380px) {
+  .humanize-quote { padding:3rem 1.15rem; }
+  .humanize-quote blockquote p { font-size:1.5rem; }
+}
