@@ -196,14 +196,14 @@ function home(data) {
   };
   const body = `      <section class="humanize-intro" aria-label="Humanize">
         <div class="humanize-stage">
-          <canvas class="dot-word-canvas" id="humanizeCanvas" aria-hidden="true"></canvas>
-          <p class="humanize-tagline">Thoughtful software. Seamless experiences.</p>
+          <canvas class="dot-word-canvas" id="humanizeCanvas" data-word="Humanize" aria-hidden="true"></canvas>
+          <canvas class="dot-word-canvas dot-tagline-canvas" data-kind="tagline" data-word="Thoughtful software. Seamless experiences." role="img" aria-label="Thoughtful software. Seamless experiences."></canvas>
         </div>
       </section>
       <section class="humanize-quote" id="humanize-quote" aria-label="Personal quote">
         <div class="quote-grain" aria-hidden="true"></div>
         <blockquote>
-          <p>${esc(h.headline)}</p>
+          <p>Thoughtful design makes complex things feel simple. Every detail should help people move forward with confidence.</p>
           <footer><span class="signature">Preetham</span></footer>
         </blockquote>
       </section>
