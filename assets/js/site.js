@@ -90,7 +90,7 @@
       if (!oc) return;
       var fontSize = isTagline
         ? Math.min(width / Math.max(10, word.length) * 1.55, height * 0.78, 28)
-        : Math.min(width * 0.255, height * 0.78, 360);
+        : Math.min(width * 0.22, height * 0.68, 320);
       oc.font = (isTagline ? '500 ' : '400 ') + fontSize + 'px ' + (isTagline ? 'Arial, sans-serif' : 'Arial, Helvetica, sans-serif');
       oc.textAlign = 'center';
       oc.textBaseline = 'middle';
