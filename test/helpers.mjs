@@ -12,6 +12,11 @@ function run(cwd, args) {
     encoding: 'utf8',
     env: {
       ...process.env,
+      GIT_CONFIG_COUNT: '4',
+      GIT_CONFIG_KEY_0: 'user.name',
+      GIT_CONFIG_VALUE_0: 'Test',
+      GIT_CONFIG_KEY_1: 'user.email',
+      GIT_CONFIG_VALUE_1: 'test@example.com',
       GIT_AUTHOR_NAME: 'Test',
       GIT_AUTHOR_EMAIL: 'test@example.com',
       GIT_COMMITTER_NAME: 'Test',
