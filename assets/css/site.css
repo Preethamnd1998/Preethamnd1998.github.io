@@ -751,3 +751,20 @@ main > .humanize-intro {
     height: clamp(190px, 48vw, 300px);
   }
 }
+
+
+/* Match the reference composition: larger, left-set dotted tagline beneath the centered title. */
+.humanize-intro .dot-tagline-canvas {
+  display:block;
+  width:100%;
+  max-width:none;
+  height:clamp(54px,5vw,78px);
+  align-self:stretch;
+  margin:clamp(1.25rem,3.5vh,2.5rem) 0 0;
+}
+@media (max-width:768px) {
+  .humanize-intro .dot-tagline-canvas {
+    height:clamp(44px,9vw,58px);
+    margin-top:1.25rem;
+  }
+}
