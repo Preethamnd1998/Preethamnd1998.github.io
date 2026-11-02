@@ -407,3 +407,8 @@ a.pager-link:hover { border-color: var(--accent); color: var(--accent); }
 }
 @media (max-width:380px) { .dot-word { font-size:14vw; } .humanize-role { letter-spacing:.08em; } }
 @media (prefers-reduced-motion:reduce) { .humanize-next span:last-child { transition:none; } }
+
+/* Interactive dotted Humanize word */
+.dot-word-canvas { display:block; width:100%; height:clamp(110px,22vw,260px); margin:0 0 clamp(2rem,7vh,5rem); overflow:visible; touch-action:pan-y; cursor:crosshair; }
+.dot-word { display:none; }
+@media (max-width:768px) { .dot-word-canvas { height:clamp(90px,27vw,170px); margin-bottom:2.5rem; } }
