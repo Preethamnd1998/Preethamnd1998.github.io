@@ -89,11 +89,11 @@
       var oc = off.getContext('2d', { willReadFrequently: true });
       if (!oc) return;
       var fontFamily = 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif';
-      var maxTextWidth = width * (isTagline ? 0.94 : 0.90);
+      var maxTextWidth = width * (isTagline ? 0.90 : 0.90);
       var fontSize = isTagline
-        ? Math.min(width / Math.max(10, word.length) * 1.55, height * 0.78, 30)
+        ? Math.min(width / Math.max(10, word.length) * 1.85, height * 0.82, 40)
         : Math.min(height * 0.88, 760);
-      oc.textAlign = 'center';
+      oc.textAlign = isTagline ? 'left' : 'center';
       oc.textBaseline = 'middle';
       oc.fillStyle = '#fff';
       oc.font = (isTagline ? '600 ' : '500 ') + fontSize + 'px ' + fontFamily;
@@ -104,7 +104,7 @@
           oc.font = '500 ' + fontSize + 'px ' + fontFamily;
         }
       }
-      oc.fillText(word, width / 2, height / 2, maxTextWidth);
+      oc.fillText(word, isTagline ? width * 0.04 : width / 2, height / 2, maxTextWidth);
       var pixels = oc.getImageData(0, 0, off.width, off.height).data;
       var stride = width < 600 ? (isTagline ? 2 : 3) : (isTagline ? 2 : 3);
       dots = [];
