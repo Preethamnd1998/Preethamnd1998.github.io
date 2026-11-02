@@ -203,7 +203,7 @@ function home(data) {
       <section class="humanize-quote" id="humanize-quote" aria-label="Personal quote">
         <div class="quote-grain" aria-hidden="true"></div>
         <blockquote>
-          <p>Thoughtful design makes complex things feel simple. Every detail should help people move forward with confidence.</p>
+          <p>A hand-stitched bag feels different. Because it's made with care, shaped by experience, built to fit. Thoughtful software deserves the same care: shaped around real workflows, refined through iteration, and built to help people do their best work.</p>
           <footer><span class="signature">Preetham</span></footer>
         </blockquote>
       </section>
