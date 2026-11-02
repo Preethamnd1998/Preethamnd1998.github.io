@@ -30,7 +30,8 @@
   // Navbar border once the page scrolls
   var navbar = document.getElementById('navbar');
   if (navbar) {
-    var onScroll = function () { navbar.classList.toggle('scrolled', window.scrollY > 8); };
+    var navElement = navbar;
+    var onScroll = function () { navElement.classList.toggle('scrolled', window.scrollY > 8); };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
@@ -39,31 +40,36 @@
   var toggle = document.getElementById('menuToggle');
   var menu = document.getElementById('navbarMenu');
   if (toggle && menu) {
+    var menuToggle = toggle;
+    var navMenu = menu;
     var setMenu = function (open) {
-      menu.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', String(open));
+      navMenu.classList.toggle('open', open);
+      menuToggle.setAttribute('aria-expanded', String(open));
     };
-    toggle.addEventListener('click', function () { setMenu(toggle.getAttribute('aria-expanded') !== 'true'); });
+    menuToggle.addEventListener('click', function () { setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'); });
     document.addEventListener('click', function (e) {
       var target = e.target;
-      if (!menu.contains(target) && !toggle.contains(target)) setMenu(false);
+      if (!(target instanceof Node) || (!navMenu.contains(target) && !menuToggle.contains(target))) setMenu(false);
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+      if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
         setMenu(false);
-        toggle.focus();
+        menuToggle.focus();
       }
     });
-    menu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { setMenu(false); }); });
+    navMenu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { setMenu(false); }); });
   }
 
 
   // Responsive, touch-aware dotted typography for both the title and tagline.
+  /** @type {NodeListOf<HTMLCanvasElement>} */
   var humanizeCanvases = document.querySelectorAll('.dot-word-canvas');
   var humanizeReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   humanizeCanvases.forEach(function (canvas) {
-    var ctx = canvas.getContext && canvas.getContext('2d');
-    if (!ctx) return;
+    var context = canvas.getContext('2d');
+    if (!context) return;
+    /** @type {CanvasRenderingContext2D} */
+    var drawingContext = context;
     var dots = [];
     var pointer = { x: -10000, y: -10000, active: false };
     var width = 1, height = 1, dpr = 1, frame = 0;
@@ -76,11 +82,12 @@
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawingContext.setTransform(dpr, 0, 0, dpr, 0, 0);
       var off = document.createElement('canvas');
       off.width = Math.ceil(width);
       off.height = Math.ceil(height);
       var oc = off.getContext('2d', { willReadFrequently: true });
+      if (!oc) return;
       var fontSize = isTagline
         ? Math.min(width / Math.max(10, word.length) * 1.55, height * 0.78, 28)
         : Math.min(width * 0.255, height * 0.78, 360);
@@ -100,7 +107,7 @@
       draw(0, true);
     }
     function draw(time, once) {
-      ctx.clearRect(0, 0, width, height);
+      drawingContext.clearRect(0, 0, width, height);
       var dark = root.getAttribute('data-theme') === 'dark';
       var color = dark ? '245,245,247' : '29,29,31';
       var radius = isTagline ? (width < 600 ? .8 : 1) : (width < 600 ? 1.25 : 1.65);
@@ -121,13 +128,14 @@
         p.x += p.vx;
         p.y += p.vy;
         var shimmer = humanizeReduced ? 0 : Math.sin((p.ox + p.oy) * .018 + time * .0014) * .12;
-        ctx.fillStyle = 'rgba(' + color + ',' + (.82 + shimmer) + ')';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-        ctx.fill();
+        drawingContext.fillStyle = 'rgba(' + color + ',' + (.82 + shimmer) + ')';
+        drawingContext.beginPath();
+        drawingContext.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        drawingContext.fill();
       }
       if (!once && !humanizeReduced) frame = window.requestAnimationFrame(draw);
     }
+    /** @param {PointerEvent} event */
     function move(event) {
       var rect = canvas.getBoundingClientRect();
       pointer.x = event.clientX - rect.left;
