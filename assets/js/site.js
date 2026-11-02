@@ -63,7 +63,7 @@
 
   // Responsive, touch-aware dotted typography for both the title and tagline.
   /** @type {NodeListOf<HTMLCanvasElement>} */
-  var humanizeCanvases = document.querySelectorAll('.dot-word-canvas');
+  var humanizeCanvases = document.querySelectorAll('#humanizeCanvas');
   var humanizeReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   humanizeCanvases.forEach(function (canvas) {
     var context = canvas.getContext('2d');
