@@ -88,14 +88,23 @@
       off.height = Math.ceil(height);
       var oc = off.getContext('2d', { willReadFrequently: true });
       if (!oc) return;
+      var fontFamily = 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif';
+      var maxTextWidth = width * (isTagline ? 0.94 : 0.90);
       var fontSize = isTagline
-        ? Math.min(width / Math.max(10, word.length) * 1.55, height * 0.78, 28)
-        : Math.min(width * 0.22, height * 0.68, 320);
-      oc.font = (isTagline ? '500 ' : '400 ') + fontSize + 'px ' + (isTagline ? 'Arial, sans-serif' : 'Arial, Helvetica, sans-serif');
+        ? Math.min(width / Math.max(10, word.length) * 1.55, height * 0.78, 30)
+        : Math.min(height * 0.88, 760);
       oc.textAlign = 'center';
       oc.textBaseline = 'middle';
       oc.fillStyle = '#fff';
-      oc.fillText(word, width / 2, height / 2, width * 0.96);
+      oc.font = (isTagline ? '600 ' : '500 ') + fontSize + 'px ' + fontFamily;
+      if (!isTagline) {
+        var measuredWidth = oc.measureText(word).width;
+        if (measuredWidth > maxTextWidth) {
+          fontSize *= maxTextWidth / measuredWidth;
+          oc.font = '500 ' + fontSize + 'px ' + fontFamily;
+        }
+      }
+      oc.fillText(word, width / 2, height / 2, maxTextWidth);
       var pixels = oc.getImageData(0, 0, off.width, off.height).data;
       var stride = width < 600 ? (isTagline ? 2 : 3) : (isTagline ? 2 : 3);
       dots = [];
