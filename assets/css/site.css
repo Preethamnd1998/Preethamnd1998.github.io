@@ -825,3 +825,37 @@ main > .humanize-intro {
   .humanize-intro #humanizeCanvas { height:clamp(170px,42vw,280px); }
   .humanize-tagline { font-size:clamp(1.05rem,4.2vw,1.4rem); }
 }
+
+
+/* Final quote treatment: readable editorial scale and a left-to-right signature reveal. */
+.humanize-quote blockquote {
+  width:min(100%,820px);
+  margin-inline:auto;
+}
+.humanize-quote blockquote p {
+  font-size:clamp(1.45rem,3vw,2.55rem);
+  line-height:1.24;
+  letter-spacing:-.04em;
+  font-weight:400;
+  text-wrap:pretty;
+}
+.humanize-quote .signature {
+  display:inline-block;
+  font-size:clamp(2.4rem,4vw,3.35rem);
+  clip-path:inset(0 100% 0 0);
+  animation:signature-write 2.8s cubic-bezier(.65,0,.25,1) .45s forwards;
+}
+@keyframes signature-write {
+  from { clip-path:inset(0 100% 0 0); }
+  to { clip-path:inset(0 0 0 0); }
+}
+@media (max-width:768px) {
+  .humanize-quote blockquote p {
+    font-size:clamp(1.35rem,5.2vw,1.85rem);
+    line-height:1.3;
+  }
+  .humanize-quote .signature { font-size:clamp(2.25rem,9vw,3rem); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .humanize-quote .signature { animation:none; clip-path:none; }
+}
