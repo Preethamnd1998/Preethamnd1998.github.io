@@ -66,8 +66,10 @@
   var humanizeCanvases = document.querySelectorAll('.dot-word-canvas');
   var humanizeReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   humanizeCanvases.forEach(function (canvas) {
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    var context = canvas.getContext('2d');
+    if (!context) return;
+    /** @type {CanvasRenderingContext2D} */
+    var drawingContext = context;
     var dots = [];
     var pointer = { x: -10000, y: -10000, active: false };
     var width = 1, height = 1, dpr = 1, frame = 0;
@@ -80,7 +82,7 @@
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawingContext.setTransform(dpr, 0, 0, dpr, 0, 0);
       var off = document.createElement('canvas');
       off.width = Math.ceil(width);
       off.height = Math.ceil(height);
@@ -105,7 +107,7 @@
       draw(0, true);
     }
     function draw(time, once) {
-      ctx.clearRect(0, 0, width, height);
+      drawingContext.clearRect(0, 0, width, height);
       var dark = root.getAttribute('data-theme') === 'dark';
       var color = dark ? '245,245,247' : '29,29,31';
       var radius = isTagline ? (width < 600 ? .8 : 1) : (width < 600 ? 1.25 : 1.65);
@@ -126,10 +128,10 @@
         p.x += p.vx;
         p.y += p.vy;
         var shimmer = humanizeReduced ? 0 : Math.sin((p.ox + p.oy) * .018 + time * .0014) * .12;
-        ctx.fillStyle = 'rgba(' + color + ',' + (.82 + shimmer) + ')';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-        ctx.fill();
+        drawingContext.fillStyle = 'rgba(' + color + ',' + (.82 + shimmer) + ')';
+        drawingContext.beginPath();
+        drawingContext.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        drawingContext.fill();
       }
       if (!once && !humanizeReduced) frame = window.requestAnimationFrame(draw);
     }
