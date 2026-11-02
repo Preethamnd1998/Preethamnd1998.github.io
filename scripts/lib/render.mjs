@@ -198,7 +198,7 @@ function home(data) {
         <h1 class="visually-hidden">Humanize</h1>
         <div class="humanize-stage">
           <canvas class="dot-word-canvas" id="humanizeCanvas" data-word="Humanize" aria-hidden="true"></canvas>
-          <canvas class="dot-word-canvas dot-tagline-canvas" data-kind="tagline" data-word="Thoughtful software. Seamless experiences." role="img" aria-label="Thoughtful software. Seamless experiences."></canvas>
+          <p class="humanize-tagline">Thoughtful software. Seamless experiences.</p>
         </div>
       </section>
       <section class="humanize-quote" id="humanize-quote" aria-label="Personal quote">
