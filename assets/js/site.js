@@ -97,7 +97,7 @@
       oc.fillStyle = '#fff';
       oc.fillText(word, width / 2, height / 2, width * 0.96);
       var pixels = oc.getImageData(0, 0, off.width, off.height).data;
-      var stride = width < 600 ? (isTagline ? 3 : 4) : (isTagline ? 3 : 5);
+      var stride = width < 600 ? (isTagline ? 2 : 3) : (isTagline ? 2 : 3);
       dots = [];
       for (var y = 0; y < off.height; y += stride) {
         for (var x = 0; x < off.width; x += stride) {
@@ -110,7 +110,7 @@
       drawingContext.clearRect(0, 0, width, height);
       var dark = root.getAttribute('data-theme') === 'dark';
       var color = dark ? '245,245,247' : '29,29,31';
-      var radius = isTagline ? (width < 600 ? .8 : 1) : (width < 600 ? 1.25 : 1.65);
+      var radius = isTagline ? (width < 600 ? .95 : 1.15) : (width < 600 ? 1.45 : 1.75);
       for (var i = 0; i < dots.length; i++) {
         var p = dots[i], dx = p.x - pointer.x, dy = p.y - pointer.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
