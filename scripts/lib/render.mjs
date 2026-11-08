@@ -198,13 +198,13 @@ function home(data) {
         <h1 class="visually-hidden">Humanize</h1>
         <div class="humanize-stage">
           <canvas class="dot-word-canvas" id="humanizeCanvas" data-word="Humanize" aria-hidden="true"></canvas>
-          <p class="humanize-tagline">Thoughtful software. Seamless experiences.</p>
+          <p class="humanize-tagline">The height of technical sophistication is building something so intuitive it becomes invisible.</p>
         </div>
       </section>
       <section class="humanize-quote" id="humanize-quote" aria-label="Personal quote">
         <div class="quote-grain" aria-hidden="true"></div>
         <blockquote>
-          <p><strong>Anyone can glue parts together,</strong> but real craft lives in what you don’t see: the clean joints behind the drywall, the balanced weight in your hand, the quiet efficiency of a tight database query. Thoughtful software isn't just assembled; it’s engineered to last.</p>
+          <p><strong>It takes immense craft to build an engine so seamless that no one notices the machinery. I don't build software to show off logic—I build it to give someone back five minutes, catch what matters, and quietly get out of the way.</p>
           <footer class="quote-attribution"><cite>— Preetham ND.</cite></footer>
         </blockquote>
       </section>
