@@ -957,3 +957,21 @@ main > .humanize-intro {
   clip-path:none;
   animation:none;
 }
+
+
+/* Humanize manifesto copy hierarchy */
+.humanize-tagline {
+  max-width: min(100%, 980px);
+  font-size: clamp(1.05rem, 1.65vw, 1.45rem);
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
+.humanize-quote blockquote p {
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  line-height: 1.48;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
