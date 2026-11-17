@@ -975,3 +975,14 @@ main > .humanize-intro {
   letter-spacing: -0.02em;
   text-wrap: pretty;
 }
+
+
+/* Slightly larger Humanize hero lettering, retaining true center alignment. */
+.humanize-intro #humanizeCanvas {
+  height:clamp(310px,39vw,510px);
+}
+@media (max-width:768px) {
+  .humanize-intro #humanizeCanvas {
+    height:clamp(185px,46vw,295px);
+  }
+}
