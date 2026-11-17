@@ -92,7 +92,7 @@
       var maxTextWidth = width * (isTagline ? 0.90 : 0.90);
       var fontSize = isTagline
         ? Math.min(width / Math.max(10, word.length) * 1.85, height * 0.82, 40)
-        : Math.min(height * 0.88, 760);
+        : Math.min(height * 0.97, 820);
       oc.textAlign = isTagline ? 'left' : 'center';
       oc.textBaseline = 'middle';
       oc.fillStyle = '#fff';
